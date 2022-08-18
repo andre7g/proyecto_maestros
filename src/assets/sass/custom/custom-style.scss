@@ -1,0 +1,217 @@
+.v-application .primary {
+    background-color: #034A73 !important;
+}
+
+
+.aside-enabled {
+    &.subheader-fixed {  
+        .subheader {
+            top: 0px !important;
+        }
+    }
+}
+
+.brand {
+    height: 54px;
+}
+
+//Vcard
+.v-card {
+
+    .v-card__title{
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        letter-spacing: 0px;
+        color: var(--gray-dark);
+    }
+}
+
+//Inputs
+.v-text-field .v-input__slot {
+    border-radius: 4px;
+}
+
+.v-text-field--outlined.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot {
+    min-height: 36px;
+    border-radius: 4px;
+    
+
+    fieldset {
+        border-color: #e5e7ee;
+        background-color: #e5e7ee;
+    }
+}
+
+.v-text-field--outlined.v-input--has-state fieldset {
+    border: 1px solid #dfe1e8;
+}
+
+.v-text-field--outlined.v-input--dense .v-label {
+    top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7b7f80;
+
+    &.v-label--active {
+        font-size: 16px;
+        color: #111;
+    }
+}
+
+.v-text-field.v-text-field--enclosed .v-text-field__details {
+    padding-top: 0px;
+    margin-bottom: 4px;
+}
+
+
+
+.theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
+    background-color: #e5e7ee !important;
+    border-radius: 3px 3px 3px 3px;
+    min-height: 48px !important;
+
+    &::before {
+        border-color: rgb(177 179 185);
+        border: none;
+    }
+
+    input {
+        margin-top: 16px !important;
+    }
+}
+
+
+.v-text-field--filled.v-input--dense .v-label {
+    
+    font-size: 14px;
+    font-weight: 500;
+    color: #7b7f80;
+    top: 14px !important;
+
+    &.v-label--active {
+        font-size: 16px;
+        color: #7c808c;
+    }
+}
+
+.v-text-field--filled.v-input--dense input{
+    color: #000;
+    font-weight: 500;
+}
+
+.v-text-field--filled.v-input--dense .v-select__selections {
+    padding-top: 0px !important;
+
+    .v-select__selection--comma{
+        margin: 17px 4px 3px 0 !important;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500 !important;
+    }
+    
+}
+
+
+
+
+
+.v-application .primary--text {
+    color: #181c32 !important;
+    caret-color: #181c32  !important;
+}
+
+
+.v-text-field--outlined.v-input--is-focused fieldset{
+    border: 1px solid currentColor !important;
+}
+
+
+.v-select.v-input--dense .v-chip {
+    margin: 8px 4px 0 4px !important;
+    background-color: #cfd8dc;
+    color: #3f4254;
+    font-weight: 500;
+
+    &:not(.v-chip--active) {
+        background-color: #cfd8dc;  
+    }
+}
+
+.v-input {
+
+    &.required {
+        //Agregar al input text obligatorio un asterisco rojos
+        .v-label::after {
+            color: red;
+            content: " *";
+        }
+    }
+}
+
+.v-text-field--filled .v-text-field__prefix, .v-text-field--filled .v-text-field__suffix {
+    max-height: 32px;
+    margin-top: 15px !important;
+}
+
+
+
+//buttons
+
+.v-btn {
+    letter-spacing: 0px !important;
+
+    &.v-size--small {
+        font-size: 12px !important;
+    }
+
+    &__content{
+        text-transform: none;
+        letter-spacing:0px;
+        font-size: 13px;
+    }
+}
+
+
+.v-data-table-header{
+    border-top: 1px solid #e5e4e4;
+    border-bottom: 1px solid #fafafa;
+    border-radius: 0 5px;
+    background-color: #eceff1;
+
+    tr {
+        border-radius: 0 5px;
+        th {
+            span {
+                color: #646985;
+                text-transform: uppercase;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
+    font-size: 13px !important;
+    color: #5d7886;
+    letter-spacing: 0px !important;
+    font-weight: 500 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+///SUB HEADER
+.v-subheader{
+    padding: 0 5px 0 5px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+}
+
+
+
+@media (max-width: 992px)
+{ 
+    #kt_subheader {
+                top: 60px !important;
+                margin-top: 60px !important;
+            }
+        
+}
