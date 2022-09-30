@@ -29,7 +29,7 @@
       <b-form class="form" @submit.stop.prevent="onSubmit">
         <div role="alert" class="alert alert-info">
           <div class="alert-text">
-            Use account <strong>admin@demo.coms</strong> and password
+            Use account <strong>admin@demo.com</strong> and password
             <strong>demo</strong> to continue.
           </div>
         </div>

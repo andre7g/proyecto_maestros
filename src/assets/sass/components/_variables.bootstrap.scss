@@ -54,6 +54,11 @@ $dark-hover:          								darken($dark, 3%) !default; // Custom variable
 $dark-light:          							    $gray-400 !default; // Custom variable
 $dark-inverse:         								$white !default; // Custom variable
 
+// greenapp colors
+$greenapp:       									#C6E2CF !default; // Bootstrap variable
+$greenapp-hover:    									#C6E2CF !default; // Custom variable
+$greenapp-light:    									#C6E2CF !default; // Custom variable
+$greenapp-inverse:  									#C6E2CF !default;  // Custom variable
 // Primary colors
 $primary:       									#3699FF !default; // Bootstrap variable
 $primary-hover:    									#187DE4 !default; // Custom variable
@@ -105,6 +110,7 @@ $white-inverse:    									$dark-75 !default; // Custom variable
 // Bootstrap theme colors
 $theme-colors: (
 	"white":      $white,  // custom color type
+	"greenapp":    $greenapp,
 	"primary":    $primary,
     "secondary":  $secondary,
     "success":    $success,
@@ -118,6 +124,7 @@ $theme-colors: (
 // Extended hover colors for Bootstrap theme colors
 $theme-hover-colors: (
 	"white":      $white-hover,   // custom color type
+	"greenapp":    $greenapp-hover,
 	"primary":    $primary-hover,
     "secondary":  $secondary-hover,
     "success":    $success-hover,
@@ -131,6 +138,7 @@ $theme-hover-colors: (
 // Extended inverse colors for Bootstrap theme colors
 $theme-inverse-colors: (
 	"white":      $white-inverse,
+	"greenapp":    $greenapp-inverse,
 	"primary":    $primary-inverse,
     "secondary":  $secondary-inverse,
     "success":    $success-inverse,
@@ -144,6 +152,7 @@ $theme-inverse-colors: (
 // Extended outline colors for Bootstrap theme colors
 $theme-outline-inverse-colors: (
 	"white":      $white,
+	"greenapp":    $greenapp,
 	"primary":    $primary,
     "secondary":  $dark-75,
     "success":    $success,
@@ -157,6 +166,7 @@ $theme-outline-inverse-colors: (
 // Extended light colors for Bootstrap theme colors
 $theme-light-colors: (
     "white":      $white-light,
+	"greenapp":    $greenapp-light,
 	"primary":    $primary-light,
     "secondary":  $secondary-light,
     "success":    $success-light,
@@ -170,6 +180,7 @@ $theme-light-colors: (
 // Extended shadow colors for Bootstrap theme colors
 $theme-shadow-colors: (
     "white":      $dark,
+	"greenapp":    $greenapp,
 	"primary":    $primary,
     "secondary":  $dark,
     "success":    $success,
@@ -183,6 +194,7 @@ $theme-shadow-colors: (
 // Extended theme text colors
 $theme-text-colors: (
     "white":      $white,
+	"greenapp":    $greenapp,
 	"primary":    $primary,
     "secondary":  $dark,
     "success":    $success,

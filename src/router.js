@@ -28,112 +28,57 @@ export default new Router({
           component: () =>
             import("@/view/pages/administracion/AdministracionBase.vue"),
           children: [
-           
-            //Sección Instituciones
             {
-              path: "instituciones",
-              name: "instituciones",
+              path: "usuarios",
+              name: "usuarios",
               component: () =>
                 import(
-                  "@/view/pages/administracion/catalogos/instituciones/AdminInstituciones.vue"
+                  "@/view/pages/administracion/catalogos/usuarios/PaginaAdminUsuarios.vue"
                 )
             },
-            //Sección Categorías
-            {
-              path: "categorias",
-              name: "categorias",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/categorias/PaginaAdminCategorias.vue"
-                )
-            },
-            //Sección departamentos
-            {
-              path: "departamentos",
-              name: "departamentos",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/departamentos/PaginaAdminDepartamentos.vue"
-                )
-            },
-            //Sección municipios
-            {
-              path: "municipios",
-              name: "municipios",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/municipios/PaginaAdminMunicipios.vue"
-                )
-            },
-            //Sección acuerdos ministeriales
-            {
-              path: "acuerdosministeriales",
-              name: "acuerdosministeriales",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/acuerdos/PaginaAdminAcuerdos.vue"
-                )
-            },
-            //Sección requisitos
-            {
-              path: "requisitos",
-              name: "requisitos",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/requisitos/PaginaAdminRequisitos.vue"
-                )
-            },
-            //Administracion de tipos de instrumento
-            {
-              
-              path: "tiposinstrumento",
-              name: "tipos-instrumento",
-              component: () =>
-                import(
-                  "@/view/pages/administracion/catalogos/tiposInstrumento/PaginaAdminTiposInstrumento.vue"
-                )
-            },
-            //Pagina admin expediente
-            {
-              path: "expedientes",
-              name: "expedientes",
-              component: () =>
-                import(
-                  "@/view/pages/expediente/Expedientes.vue"
-                ),
 
+           
+          ]
+        },
+        // Sección control
+        {
+          path: "control",
+          name: "control",
+          component: () =>
+            import("@/view/pages/control/ControlBase.vue"),
+          children: [
+            {
+              path: "usuarios",
+              name: "control-usuarios",
+              component: () =>
+                import(
+                  "@/view/pages/control/usuarios/PaginaControlUsuarios.vue"
+                )
+            },              
+            //Pagina control usuario
+            {
+              path: "usuario/:id",
+              name: "control-usuario",
+              component: () =>
+                import(
+                  "@/view/pages/control/usuarios/PaginaNuevoControlUsuario.vue"
+                ),
                 children: [
 
-                   //Sección listado expediente
-                   {
-                    path: "registro",
-                    name: "registro",
-                    component: () =>
-                      import(
-                        "@/view/pages/expediente/PaginaAdminExpedientes.vue"
-                      )
-                  },
-
-
-                  //Sección ingreso expediente
-                  {
-                    path: "ingreso",
-                    name: "expedientes-ingreso",
-                    component: () =>
-                      import(
-                        "@/view/pages/expediente/ingreso/PaginaIngresoExpediente.vue"
-                      )
-                  },
-                  //actualizar expediente
-                  {
-                    path: "actualizar/:id/expediente",
-                    name: "actualizar-expediente",
-                    component: () => import("@/view/pages/expediente/actualizar/PaginaEditExpediente.vue")
-                  },
+                ]
+            },        
+            //Pagina control usuario historial
+            {
+              path: "historial/:id",
+              name: "historial-usuario",
+              component: () =>
+                import(
+                  "@/view/pages/control/usuarios/PaginaControlHistorial.vue"
+                ),
+                children: [
 
                 ]
-            },
-           
+            },        
           ]
         },
        

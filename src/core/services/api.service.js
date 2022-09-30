@@ -9,8 +9,8 @@ import JwtService from "@/core/services/jwt.service";
 const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
-    //Vue.axios.defaults.baseURL = "http://localhost:5236";
-    Vue.axios.defaults.baseURL = "http://205.209.122.7:8082";
+    Vue.axios.defaults.baseURL = "http://localhost:5196";
+    //Vue.axios.defaults.baseURL = "http://205.209.122.7:8082";
   },
 
   /**
@@ -50,7 +50,7 @@ const ApiService = {
    */
   post(resource, params) {
     return Vue.axios.post(`${resource}`, {Data: params} ).catch(error => {
-      // console.log(error);
+      console.log(error);
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },

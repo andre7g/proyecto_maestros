@@ -39,6 +39,12 @@ let specialChars = (propertyType) => {
 };
 
 
+let maxLengthForm6 = (propertyType) => {
+  return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,6}$/.test(v) || `Máximo número de caracteres sobrepasa 6 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
+};
+let maxLengthForm7 = (propertyType) => {
+  return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,7}$/.test(v) || `Máximo número de caracteres sobrepasa 7 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
+};
 let maxLengthForm10 = (propertyType) => {
   return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,10}$/.test(v) || `Máximo número de caracteres sobrepasa 10 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
 };
@@ -48,11 +54,14 @@ let maxLengthForm15 = (propertyType) => {
 let maxLengthForm20 = (propertyType) => {
   return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,20}$/.test(v) || `Máximo número de caracteres sobrepasa 20 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
 };
+let maxLengthForm45 = (propertyType) => {
+  return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,45}$/.test(v) || `Máximo número de caracteres sobrepasa 45 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
+};
 let maxLengthForm50 = (propertyType) => {
   return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,50}$/.test(v) || `Máximo número de caracteres sobrepasa 50 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
 };
 let maxLengthForm100 = (propertyType) => {
-  return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,100}$/.test(v) || `Máximo número de caracteres sobrepasa 100 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
+  return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&@/()]{0,100}$/.test(v) || `Máximo número de caracteres sobrepasa 100 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
 };
 let maxLengthForm200 = (propertyType) => {
   return v => /^[-.: ,;+ñáéíóúÚÓÍÉÁa-zA-Z0-9_#$%&/()]{0,200}$/.test(v) || `Máximo número de caracteres sobrepasa 200 o ingresó un caracter que no es válido para el campo ${propertyType}, caracteres válidos: -.:,;+a-zA-Z0-9_#$%&/()`;
@@ -139,6 +148,9 @@ let decimals = (propertyType) => {
   /^\d+(\.\d{1,2})?$/.test(v) ||
     `Solo se permiten valores decimales para ${propertyType}`;
 };
+let decimalRules = propertyType => {
+  return v => /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(v)  || `El número ingresado para ${propertyType} es un numero invalido`;
+};
 
 //Validar 4 decimales
 let decimals4 = (propertyType) => {
@@ -179,5 +191,10 @@ export default {
   onlyNit,
   maxLengthForm200,
   maxLengthForm20,
-  maxLengthForm100
+  maxLengthForm100,
+  maxLengthForm45,
+  maxLengthForm6,
+  maxLengthForm7,
+  decimalRules
+  
 };

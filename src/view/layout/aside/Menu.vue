@@ -19,187 +19,24 @@
         </a>
       </li>
     </router-link>
-
-   
-
     <!-- BEGIN:: PROYECTOS-->
     <li
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('/vue-bootstrap') }"
+      v-bind:class="{ 'menu-item-open': hasActiveChildren('/administracion') }"
     >
       <a href="#" class="menu-link menu-toggle">
-        <i class="menu-icon flaticon-layers"></i>
+        <i class="menu-icon fas fa-users-cog"></i>
         <span class="menu-text">Administración</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="menu-submenu">
         <span class="menu-arrow"></span>
         <ul class="menu-subnav">
-          <li aria-haspopup="true" class="menu-item menu-item-parent">
-            <span class="menu-link">
-              <span class="menu-text">Catálogos</span>
-            </span>
-          </li>
-          <li
-            aria-haspopup="true"
-            data-menu-toggle="hover"
-            class="menu-item menu-item-submenu"
-            v-bind:class="{
-              'menu-item-open': hasActiveChildren('/vue-bootstrap/button')
-            }"
-          >
-            <a href="#" class="menu-link menu-toggle">
-              <i class="menu-bullet menu-bullet-dot">
-                <span></span>
-              </i>
-              <span class="menu-text">Catálogos</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-              <span class="menu-arrow"></span>
-              <ul class="menu-subnav">
-                <li aria-haspopup="true" class="menu-item menu-item-parent">
-                  <span class="menu-link">
-                    <span class="menu-text"></span>
-                  </span>
-                </li>
-
-                <router-link
-                  to="/administracion/acuerdosministeriales"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Acuerdos Ministeriales</span>
-                    </a>
-                  </li>
-                </router-link>
-                <router-link
-                  to="/administracion/categorias"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Categorías</span>
-                    </a>
-                  </li>
-                </router-link>
-                <router-link
-                  to="/administracion/departamentos"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Departamentos</span>
-                    </a>
-                  </li>
-                </router-link>
-                <router-link
-                  to="/administracion/municipios"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Municipios</span>
-                    </a>
-                  </li>
-                </router-link>
-                <router-link
-                  to="/administracion/requisitos"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Requisitos</span>
-                    </a>
-                  </li>
-                </router-link>
-                <router-link
-                  to="/administracion/tiposinstrumento"
-                  v-slot="{ href, navigate, isActive, isExactActive }"
-                >
-                  <li
-                    aria-haspopup="true"
-                    data-menu-toggle="hover"
-                    class="menu-item"
-                    :class="[
-                      isActive && 'menu-item-active',
-                      isExactActive && 'menu-item-active'
-                    ]"
-                  >
-                    <a :href="href" class="menu-link" @click="navigate">
-                      <i class="menu-bullet menu-bullet-dot">
-                        <span></span>
-                      </i>
-                      <span class="menu-text">Tipos de Instrumento</span>
-                    </a>
-                  </li>
-                </router-link>
-
-
-              </ul>
-            </div>
-          </li>
 
           <router-link
-            to="/vue-bootstrap/card"
+            to="/administracion/usuarios"
             v-slot="{ href, navigate, isActive, isExactActive }"
           >
             <li
@@ -215,32 +52,12 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">Card</span>
+                <span class="menu-text">Usuarios</span>
               </a>
             </li>
           </router-link>
-         
-        </ul>
-      </div>
-    </li>
-    <!-- BEGIN:: PROYECTOS-->
-    <li
-      aria-haspopup="true"
-      data-menu-toggle="hover"
-      class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('/vue-bootstrap') }"
-    >
-      <a href="#" class="menu-link menu-toggle">
-        <i class="menu-icon flaticon-layers"></i>
-        <span class="menu-text">Expedientes</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="menu-submenu">
-        <span class="menu-arrow"></span>
-        <ul class="menu-subnav">
-
           <router-link
-            to="/administracion/expedientes/registro"
+            to="/administracion/expedientes"
             v-slot="{ href, navigate, isActive, isExactActive }"
           >
             <li
@@ -256,7 +73,7 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">Ingreso de Expedientes</span>
+                <span class="menu-text">e</span>
               </a>
             </li>
           </router-link>
@@ -387,10 +204,10 @@
           </router-link>
         </ul>
       </div>
-    </li>
+    </li-->
 
     <router-link
-      to="/builder"
+      to="/control/usuarios"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <li
@@ -403,11 +220,11 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
-          <span class="menu-text">Layout Builder</span>
+          <i class="menu-icon fas fa-weight"></i>
+          <span class="menu-text">Usuarios</span>
         </a>
       </li>
-    </router-link-->
+    </router-link>
 
     <!--li class="menu-section">
       <h4 class="menu-text">Cooperacion Sur - Sur (Externo)</h4>

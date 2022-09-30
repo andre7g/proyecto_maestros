@@ -1,37 +1,38 @@
 //import axios from "axios";
 import ApiService from "@/core/services/api.service";
 // action types
-export const OBTENER_ESTADOS = "obtenerEstados";
-export const OBTENER_ESTADO = "obtenerEstado";
-export const REGISTAR_ESTADO = "registrarEstado";
-export const ACTUALIZAR_ESTADO = "actualizarEstado";
+export const OBTENER_USUARIOS = "obtenerUsuarios";
+export const OBTENER_USUARIO = "obtenerUsuario";
+export const REGISTAR_USUARIO = "registrarUsuario";
+export const ACTUALIZAR_USUARIO = "actualizarUsuario";
 // mutation types
-export const SET_ESTADOS = "setEstados";
-export const SET_ESTADO  = "setEstado";
+export const SET_USUARIOS = "setUsuarios";
+export const SET_USUARIO  = "setUsuario";
+
 
 const state = {
-  estados: [],
-  estado: []
+    usuarios: [],
+    usuario: []
 };
 
 const getters = {
-  obtnenerEstados(state) {
-    return state.estados;
+  obtnenerUsuarios(state) {
+    return state.usuarios;
   }
 };
 
 const actions = {
-  async [OBTENER_ESTADOS](context, estadoId) {
+  async [OBTENER_USUARIOS](context, estadoId) {
 
-    let endpoint = 'api/Estados'
+    let endpoint = 'api/Usuarios'
     if(estadoId){
-        endpoint = `api/Estados/all/${estadoId}`
+        endpoint = `api/Usuarios/all/${estadoId}`
     }
 
     return new Promise(resolve => {
         ApiService.query(`apiconsume/obtener?endpoint=${endpoint}`, '')
             .then(({ data }) => {
-                context.commit(SET_ESTADOS, data.data);
+                context.commit(SET_USUARIOS, data.data);
                 //console.log(data)
                 resolve(data)
             })
@@ -42,11 +43,11 @@ const actions = {
             });
     });       
   },
-  async [OBTENER_ESTADO](context, id) {
+  async [OBTENER_USUARIO](context, id) {
     return new Promise(resolve => {
-      ApiService.query(`apiconsume/edit/${id}?endpoint=Instituciones/`)
+      ApiService.query(`apiconsume/edit/${id}?endpoint=api/Usuarios/`)
         .then(({ data }) => {
-          context.commit(SET_ESTADO, data.data);
+          context.commit(SET_USUARIO, data.data);
           //console.log(this.instituciones)
           resolve(data);
         })
@@ -63,15 +64,15 @@ const actions = {
    * @param {*} datos
    * @returns
    */
-  async [REGISTAR_ESTADO](context, datos) {
-    //console.log(datosEmpresa)
+  async [REGISTAR_USUARIO](context, datos) {
+    //console.log(datos)
     return new Promise(resolve => {
       ApiService.post(
-        `apiconsume/create?endpoint=Instituciones`,
+        `apiconsume/create?endpoint=api/Usuarios`,
         datos
       )
         .then(({ data }) => {
-          context.commit(SET_ESTADO, data.data);
+          context.commit(SET_USUARIO, data.data);
           resolve(data);
         })
         .catch(error => {
@@ -81,17 +82,17 @@ const actions = {
     });
   },
 
-  async [ACTUALIZAR_ESTADO](context, datos) {
+  async [ACTUALIZAR_USUARIO](context, datos) {
     
     let id = datos.id;
 
     return new Promise(resolve => {
       ApiService.update(
-        `apiconsume/update/${id}?endpoint=Instituciones/`,
+        `apiconsume/update/${id}?endpoint=api/Usuarios/`,
         datos
       )
         .then(({ data }) => {
-          context.commit(SET_ESTADO, data.data);
+          context.commit(SET_USUARIO, data.data);
           resolve(data);
         })
         .catch(error => {
@@ -99,16 +100,16 @@ const actions = {
           //context.commit(SET_ERROR, response.data.errors);
         });
     });
-  }
+  }, 
 };
 
 const mutations = {
-  [SET_ESTADOS](state, data) {
-    state.estados = data;
+  [SET_USUARIOS](state, data) {
+    state.usuarios = data;
   },
 
-  [SET_ESTADO](state, data) {
-    state.estado = data;
+  [SET_USUARIO](state, data) {
+    state.usuario = data;
   }
 };
 

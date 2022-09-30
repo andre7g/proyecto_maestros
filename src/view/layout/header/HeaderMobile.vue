@@ -16,6 +16,7 @@
         v-if="asideEnabled"
         class="btn p-0 burger-icon burger-icon-left"
         id="kt_aside_mobile_toggle"
+        
       >
         <span></span>
       </button>

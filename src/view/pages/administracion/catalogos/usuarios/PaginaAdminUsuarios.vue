@@ -4,16 +4,15 @@
       <v-card-title>
         <v-row class="col-md-12">
           <v-col cols="12" sm="12" md="6">
-            Tipos Instrumento | Administración
+            Usuarios | Administración
           </v-col>
           <v-col cols="12" sm="12" md="6">
             <v-btn
-              color=""
-              dark
-              class="mb-2 float-right blue-grey darken-2"
+              color="#C6E2CF"
+              class="mb-2 float-right teal--text"
               @click="modalNuevo"
             >
-              Registrar Tipo Instrumento
+              <v-icon left>fas fa-user-plus</v-icon> Nuevo Usuario
             </v-btn>
           </v-col>
         </v-row>
@@ -35,7 +34,7 @@
             prevIcon: 'mdi-chevron-left',
             nextIcon: 'mdi-chevron-right',
             'items-per-page-text': 'Registros por página',
-            pageText: '{0}-{1} de {2}'
+            pageText: '{0}-{1} de {2}',
           }"
         >
           <template v-slot:top>
@@ -84,10 +83,13 @@
 
           <template v-slot:item="{ item }">
             <tr>
-              <td>{{ item.id }}</td> 
-              <td>{{ item.tipo_Instrumento }}</td>
-             
-                <td>
+              <td>{{ item.codigo }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.telefono }}</td>
+              <td>{{ item.genero }}</td>
+              <td>{{ item.fecha_Nacimiento }}</td>
+              <td>{{ item.fecha_Inicio }}</td>
+              <td>
                 <v-chip
                   class="ma-2 font-weight-medium"
                   label
@@ -107,22 +109,21 @@
                   "
                   small
                 >
-                  {{item.estado}}
+                  {{ item.estado }}
                 </v-chip>
               </td>
               <td>
                 <v-btn
                   class="
                     ma-2
-                    btn-bg-light
-                    white--text
+                    teal--text
                     lighten-2--text
                     font-weight-medium
                     text-capitalize
                   "
                   small
                   depressed
-                  color="indigo"
+                  color="#C6E2CF"
                   @click="obtenerDatosItem(item.id)"
                 >
                   <v-icon left>mdi-pencil</v-icon> Actualizar
@@ -140,8 +141,6 @@
           </template> -->
     </v-card>
 
-
-
     <!--begin:: modal registro-->
     <v-dialog
       v-model="dialogRegistro"
@@ -152,7 +151,7 @@
     >
       <v-card tile>
         <v-card-title>
-          {{modalTitle}}
+          {{ modalTitle }}
 
           <v-spacer></v-spacer>
           <v-btn
@@ -176,23 +175,118 @@
             v-model="validForm"
           >
             <v-row>
-              <v-col cols="12" md="12" class="pt-4 pb-0">
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
                 <v-text-field
                   autocomplete="off"
                   class="required"
                   dense
                   filled
-                  color="blue-grey darken-2"
-                  v-model="datosItem.tipo_Instrumento"
-                  label="Tipo Instrumento"
-                  :rules="[
-                    required('Tipo Instrumento'),
-                    maxLength('Tipo Instrumento', 100)
-                  ]"
-                  maxlength="100"
+                  color="teal lighten-1"
+                  v-model="datosItem.nombres"
+                  label="Nombres"
+                  :rules="[required('Nombres'), maxLengthForm45('Nombres')]"
                 ></v-text-field>
               </v-col>
-
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  autocomplete="off"
+                  class="required"
+                  dense
+                  filled
+                  color="teal lighten-1"
+                  v-model="datosItem.apellidos"
+                  label="Apellidos"
+                  :rules="[required('Apellidos'), maxLengthForm45('Apellidos')]"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="12" sm="12" class="pt-4 pb-0">
+                <v-autocomplete
+                  v-model="datosItem.genero"
+                  :items="generos"
+                  class="required"
+                  dense
+                  filled
+                  label="Género"
+                  item-text="text"
+                  item-value="value"
+                  :rules="[selectRequired('Género')]"
+                ></v-autocomplete>
+              </v-col>
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  autocomplete="off"
+                  dense
+                  filled
+                  color="teal lighten-1"
+                  v-model="datosItem.dpi"
+                  label="Dpi"
+                  v-mask="'#############'"
+                  :rules="[]"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  autocomplete="off"
+                  class="required"
+                  dense
+                  filled
+                  color="teal lighten-1"
+                  v-model="datosItem.telefono"
+                  label="Número de Teléfono"
+                  v-mask="'####-####'"
+                  :rules="[required('Número de Teléfono')]"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  dense
+                  filled
+                  autocomplete="off"
+                  class="required"
+                  color="teal lighten-1"
+                  v-model="fechaNacimiento"
+                  label="Fecha Nacimiento"
+                  :rules="[
+                    required('Fecha Nacimiento'),
+                    minLength('Fecha Nacimiento', 8),
+                    dateFormat('Fecha Nacimiento'),
+                  ]"
+                  maxlength="10"
+                  v-mask="'##/##/####'"
+                >
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" md="6" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  autocomplete="off"
+                  class="required"
+                  dense
+                  filled
+                  color="teal lighten-1"
+                  v-model="datosItem.email"
+                  label="Email"
+                  :rules="[
+                    required('Email'),
+                    validEmail('Email'),
+                    maxLengthForm100('Email'),
+                  ]"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="12" sm="12" class="pt-4 pb-0">
+                <v-text-field
+                  autocomplete="off"
+                  class="required"
+                  dense
+                  filled
+                  color="teal lighten-1"
+                  v-model="datosItem.direccion"
+                  label="Dirección"
+                  :rules="[
+                    required('Dirección'),
+                    maxLengthForm500('Dirección'),
+                  ]"
+                ></v-text-field>
+              </v-col>
             </v-row>
 
             <v-row>
@@ -203,7 +297,7 @@
                 <template>
                   <v-switch
                     class="pt-0 mt-1"
-                    color="blue-grey darken-2"
+                    color="teal"
                     v-model="switchItemEstado"
                     inset
                     :label="switchItemEstado ? 'Activo' : 'Inactivo'"
@@ -212,42 +306,41 @@
                 </template>
               </v-col>
             </v-row>
+
             <v-row>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="grey lighten-5"
-                elevation="0"
-                class="mb-2 float-right grey lighten-5 mr-2"
-                @click="
-                  dialogRegistro = false;
-                  resetForm();
-                "
-                :disabled="btnRegistroLoading"
-              >
-                Cancelar
-              </v-btn>
-              <!--:disabled="!validDocForm" type="submit"-->
-              <v-btn
-                color="primary"
-                class="mb-2 float-right"
-                type="submit"
-                :elevation="0"
-                :disabled="!validForm"
-                :loading="btnRegistroLoading"
-              >
-                Guardar
-              </v-btn>
+              <v-col cols="12">
+                <v-btn
+                  color="grey lighten-5"
+                  elevation="0"
+                  class="mb-2 float-right grey lighten-5"
+                  @click="
+                    dialogRegistro = false;
+                    resetForm();
+                  "
+                  :disabled="btnRegistroLoading"
+                >
+                  Cancelar
+                </v-btn>
+                <!--:disabled="!validDocForm" type="submit"-->
+                <v-btn
+                  color="#C6E2CF"
+                  class="mb-2 float-right teal--text"
+                  type="submit"
+                  :elevation="0"
+                  :disabled="!validForm"
+                  :loading="btnRegistroLoading"
+                >
+                  Guardar
+                </v-btn>
+              </v-col>
             </v-row>
           </v-form>
         </v-card-text>
-        
 
         <div style="flex: 1 1 auto"></div>
       </v-card>
     </v-dialog>
-
     <!--end:: modal registro-->
-
     <!--Dialog loader -->
     <DialogLoader
       :dialogVisible="dialogLoaderVisible"
@@ -262,97 +355,129 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import DialogLoader from "@/view/content/DialogLoader";
 import SnackAlert from "@/view/content/alerts/SnackAlert.vue";
 
-import { OBTENER_TIPOS_INSTRUMENTO,REGISTRAR_TIPO_INSTRUMENTO,ACTUALIZAR_TIPO_INSTRUMENTO,OBTENER_TIPO_INSTRUMENTO } from "@/core/services/store/tiposinstrumento/tiposinstrumento.module";
+import {
+  OBTENER_USUARIOS,
+  REGISTAR_USUARIO,
+  OBTENER_USUARIO,
+  ACTUALIZAR_USUARIO,
+} from "@/core/services/store/usuarios/usuarios.module";
 import validations from "@/core/untils/validations.js";
 
+import moment from "moment";
+
+moment.locale("es");
+Vue.filter("formatDate", function(value) {
+  if (value) {
+    return moment(String(value)).format("DD/MM/YYYY");
+  }
+});
+
 export default {
-  name: "AdminProyectosTradicionales",
+  name: "AdminUsuarios",
   data() {
     return {
-        itemName:'Tipo Instrumento',
+      itemName: "Usuario",
       validForm: false,
-      tableLoading:false,
-      //ddRolesLoading: false,
+      tableLoading: false,
       dialogRegistro: false,
       dialogLoaderVisible: false,
-      //dialogSuspension: false,
       dialogLoaderText: "",
       switchItemEstado: true,
-      //proyectoSeleccionado: "",
       filtro: "",
       dialog: false,
-      modalTitle: "Registrar nuevo Tipo Instrumento",
+      modalTitle: "Registrar nuevo Usuario",
       accion: 1,
       btnRegistroText: "Guardar",
       btnRegistroLoading: false,
-      selectEstado: '',
+      selectEstado: "",
       items: [],
       datosItem: {
-        id:0,
-        tipo_Instrumento:'',
-        usuario_Creacion:'',
-        fecha_Creacion:'2022-07-14',
-        estadosId:1
+        id: 0,
+        primerNombre: "",
+        segundoNombre: "",
+        primerApellido: "",
+        segundoApellido: "",
+        dpi: 0,
+        telefono: "",
+        direccion: "",
+        email: "",
+        codigo: 0,
+        pass: "",
+        fecha_Nacimiento: "",
+        fecha_Inicio: "2022-07-14",
+        estadosId: 1,
+        genero: "",
       },
       estados: [
         { text: "Todos", value: null },
         { value: 1, text: "Activo" },
-        { value: 2, text: "Inactivo" }
+        { value: 2, text: "Inactivo" },
       ],
-      //datosUsuario: {},
+      generos: [
+        { value: "M", text: "Masculino" },
+        { value: "F", text: "Femenino" },
+      ],
       ...validations,
-    
+      fechaNacimiento: "",
     };
   },
   components: {
     DialogLoader,
-    SnackAlert
+    SnackAlert,
   },
   methods: {
     filtroEstado(value) {
-      // If this filter has no value we just skip the entire filter.
       if (!this.selectEstado.value) {
         return true;
       }
-      // Check if the current loop value (The calories value)
-      // equals to the selected value at the <v-select>.
       return value === this.selectEstado.text;
     },
     modalNuevo() {
       this.accion = 1;
-      this.modalTitle = "Registrar Tipo Instrumento";
-      this.btnRegistroText = "Registrar Tipo Instrumento";
+      this.modalTitle = `Registrar ${this.itemName}`;
+      this.btnRegistroText = `Registrar ${this.itemName}`;
       this.switchItemEstado = true;
       this.dialogRegistro = true;
     },
     resetForm() {
       this.datosItem = {
-        id:0,
-        categoria:'',
-        usuario_Creacion:'',
-        fecha_Creacion:'2022-07-14',
-        estadosId:1
+        id: 0,
+        nombres: "",
+        apellidos: "",
+        dpi: 0,
+        telefono: "",
+        direccion: "",
+        email: "",
+        codigo: 0,
+        pass: "",
+        fecha_Nacimiento: "",
+        fecha_Inicio: "2022-07-14",
+        estadosId: 1,
+        genero:''
       };
+      this.fechaNacimiento = "";
       this.switchItemEstado = true;
       this.accion = 1;
     },
     /// Obtener los items
     async obtenerItems() {
-    this.items = [];
+      this.items = [];
       this.tableLoading = true;
 
       this.$store
-        .dispatch(OBTENER_TIPOS_INSTRUMENTO)
-        .then(res => {
-          if(res.status === 200){
-            this.items = this.$store.state.tiposinstrumento.tiposInstrumento;
+        .dispatch(OBTENER_USUARIOS)
+        .then((res) => {
+          if (res.status === 200) {
+            this.items = this.$store.state.usuarios.usuarios;
+            //console.log(this.items);
           }
           this.tableLoading = false;
-        //console.log(this.items);
+          //console.log(this.items);
           //console.log('sdkfdkd');
         })
         .catch(() => {
@@ -362,19 +487,28 @@ export default {
     //Registro de categorias
     registrarItem() {
       this.btnRegistroLoading = true;
-        //console.log(this.datosItem);
-      //!Asignar el estado a datos empresa segun lo seleccionado en el swithc del formulario
+
+      if (this.datosItem.dpi === "") {
+        this.datosItem.dpi = 0;
+      }
+
       this.switchItemEstado
         ? (this.datosItem.estadosId = 1)
         : (this.datosItem.estadosId = 2);
 
-      this.datosItem.usuario_Creacion= "admin";
+      //this.datosItem.usuario_Creacion = "admin";
+      this.datosItem.fecha_Nacimiento = moment(
+        this.fechaNacimiento,
+        "DD-MM-YYYY"
+      ).format("YYYY-MM-DD");
 
       //?Si accion es 1 se realiza el registro
       if (this.accion === 1) {
+        //console.log(this.datosItem);
         this.$store
-          .dispatch(REGISTRAR_TIPO_INSTRUMENTO, this.datosItem)
-          .then(res => {
+          .dispatch(REGISTAR_USUARIO, this.datosItem)
+          .then((res) => {
+            console.log(res);
             this.btnLoading = false;
             //this.dialogLoaderVisible = false;
             if (res.status === 200) {
@@ -405,9 +539,11 @@ export default {
       }
       //?Si accion es 2 se realiza la actualizacion
       else {
+        //console.log(this.datosItem);
         this.$store
-          .dispatch(ACTUALIZAR_TIPO_INSTRUMENTO,  this.datosItem)
-          .then(res => {
+          .dispatch(ACTUALIZAR_USUARIO, this.datosItem)
+          .then((res) => {
+            //console.log(res);
             this.btnLoading = false;
             this.dialogLoaderVisible = false;
             this.btnRegistroLoading = false;
@@ -449,14 +585,17 @@ export default {
       //!Pre seleccionar el tab de datos de la empresa
       //this.activeTab = "empresa";
       this.$store
-        .dispatch(OBTENER_TIPO_INSTRUMENTO, Id)
-        .then(res => {
+        .dispatch(OBTENER_USUARIO, Id)
+        .then((res) => {
           //console.log(res);
           if (res.status === 200) {
-            this.datosItem = this.$store.state.tiposinstrumento.tipoInstrumento;
+            this.datosItem = this.$store.state.usuarios.usuario;
             this.datosItem.estadosId === 1
               ? (this.switchItemEstado = true)
               : (this.switchItemEstado = false);
+            this.fechaNacimiento = moment(
+              this.datosItem.fecha_Nacimiento
+            ).format("DD-MM-YYYY");
             this.accion = 2;
             this.dialogRegistro = true;
           } else {
@@ -476,49 +615,73 @@ export default {
           );
           this.dialogLoaderVisible = false;
         });
-    }
+    },
   },
-  created(){
+
+  created() {
     this.obtenerItems();
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Inicio", route: "dashboard" },
       { title: "Administracion" },
-      { title: "Tipo Instrumento" }
+      { title: "Usuarios" },
     ]);
-  }, 
+  },
 
-  computed:{
-
+  computed: {
     headers() {
-        return [
-          {
-            text: "Id",
-            align: "start",
-            sortable: false,
-            value: "id"
-          },
-          {
-            text: "Tipo Instrumento",
-            align: "start",
-            sortable: true,
-            value: "tipo_Instrumento"
-          },
-          {
-            text: "Estado",
-            align: "start",
-            sortable: true,
-            value: "estado"
-          },
-          {
-            text: "Acciones",
-            align: "start",
-            sortable: false,
-            value: ""
-          }
-      ]
-    }
-  }
+      return [
+        {
+          text: "Codigo",
+          align: "start",
+          sortable: false,
+          value: "codigo",
+        },
+        {
+          text: "Nombre",
+          align: "start",
+          sortable: true,
+          value: "nombre",
+        },
+        {
+          text: "No. Teléfono",
+          align: "start",
+          sortable: true,
+          value: "telefono",
+        },
+        {
+          text: "Género",
+          align: "start",
+          sortable: true,
+          value: "genero",
+        },
+        {
+          text: "Fecha Nacimiento",
+          align: "start",
+          sortable: true,
+          value: "fecha_Nacimiento",
+        },
+        {
+          text: "Fecha Inicio",
+          align: "start",
+          sortable: true,
+          value: "fecha_Inicio",
+        },
+        {
+          text: "Estado",
+          align: "start",
+          sortable: true,
+          value: "estado",
+        },
+        {
+          text: "Acciones",
+          align: "start",
+          sortable: false,
+          value: "",
+        },
+      ];
+    },
+  },
 };
 </script>
