@@ -5,31 +5,27 @@
       :class="{
         'login-signin-on': this.state == 'signin',
         'login-signup-on': this.state == 'signup',
-        'login-forgot-on': this.state == 'forgot'
+        'login-forgot-on': this.state == 'forgot',
       }"
       id="kt_login"
     >
       <!--begin::Aside-->
       <div
         class="login-aside d-flex flex-column flex-row-auto"
-        style="background-color: #dbe3ff;"
+        style="background-color: #00173C;"
       >
-        <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
-          <a href="#" class="text-center mb-10">
-            <img
-              src="media/logos/sigeaci_logo.png"
-              class="max-h-100px"
-              alt=""
-            />
-          </a>
+        <div class="d-flex flex-column-auto flex-column pt-lg-20 pt-5 pb-0">
           <p
-            class="font-weight-bold text-justify font-size-h5 font-size-h5-lg ml-8 mr-8"
-            style="color: #063b5c;"
+            class="font-weight-bold text-justify font-size-h1 font-size-h2-lg ml-8 mr-8 text-md-center"
+            style="color: #00A88C;"
           >
-            SISTEMA DE GESTIÓN, EJECUCIÓN Y ANÁLISIS DE INFORMACIÓN DEL SISTEMA
-            NACIONAL DE COOPERACIÓN PARA EL DESARROLLO
+            MARCELLO´S GYM
           </p>
         </div>
+        <!--div
+          class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
+          :style="{ backgroundImage: `url(${backgroundImage})` }"
+        ></div-->
         <div
           class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
           :style="{ backgroundImage: `url(${backgroundImage})` }"
@@ -38,15 +34,24 @@
       <!--begin::Aside-->
       <!--begin::Content-->
       <div
-        class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto"
+        class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-0 mx-auto"
       >
         <div class="d-flex flex-column-fluid flex-center">
           <!--begin::Signin-->
           <div class="login-form login-signin">
-            <form
-              class="form"
-              novalidate="novalidate"
+            <a href="#" class="text-center mb-10">
+              <img
+                src="media/logos/logo-rgm.png"
+                class="max-h-70px mb-4"
+                alt=""
+              />
+            </a>
+
+            <v-form
+              v-on:submit.prevent="login"
+              v-model="validForm"
               id="kt_login_signin_form"
+              ref="kt_login_signin_form"
             >
               <div class="pb-13 pt-lg-0 pt-5">
                 <h3
@@ -66,19 +71,22 @@
               </div>
               <div class="form-group">
                 <label class="font-size-h6 font-weight-bolder text-dark"
-                  >Correo electrónico</label
+                  >Código de Usuario</label
                 >
                 <div
                   id="example-input-group-1"
                   label=""
                   label-for="example-input-1"
                 >
-                  <input
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
+                  <v-text-field
+                    outlined
+                    class=""
                     type="text"
                     name="email"
                     ref="email"
-                    v-model="form.email"
+                    maxlength="150"
+                    v-model="form.codigo"
+                    v-mask="'#####'"
                   />
                 </div>
               </div>
@@ -99,13 +107,16 @@
                   label=""
                   label-for="example-input-2"
                 >
-                  <input
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
+                  <!--form-control form-control-solid h-auto py-7 px-6 rounded-lg-->
+                  <v-text-field
+                    outlined
+                    class=""
                     type="password"
                     name="password"
                     ref="password"
-                    v-model="form.password"
+                    v-model="form.pass"
                     autocomplete="off"
+                    maxlength="50"
                   />
                 </div>
               </div>
@@ -113,11 +124,12 @@
                 <button
                   ref="kt_login_signin_submit"
                   class="btn btn-primary font-weight-bolder font-size-h6 px-15 py-4 my-3 mr-3"
+                  :disabled="!validForm"
                 >
                   Iniciar Sesión
                 </button>
               </div>
-            </form>
+            </v-form>
           </div>
           <!--end::Signin-->
           <!--begin::Signup-->
@@ -208,9 +220,9 @@
           <!--begin::Forgot-->
           <div class="login-form login-forgot">
             <!--begin::Form-->
-            <form
-              class="form"
-              novalidate="novalidate"
+            <v-form
+              v-on:submit.prevent="resetPassEmail"
+              v-model="validFormReset"
               id="kt_login_forgot_form"
               ref="kt_login_forgot_form"
             >
@@ -221,56 +233,66 @@
                   ¿Olvidaste tu contraseña?
                 </h3>
                 <p class="text-muted font-weight-bold font-size-h4">
-                  Ingresa tu correo electrónico para reestablecer tu contraseña
+                  Ingresa tu correo electrónico para restablecer tu contraseña
                 </p>
               </div>
               <div class="form-group">
-                <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                <v-text-field
+                  outlined
+                  class="gray-bg"
                   type="email"
                   placeholder="Correo electrónico"
                   name="email"
                   autocomplete="off"
+                  v-model="datosPass.correo"
+                  :rules="[
+                    required('Correo Electrónico'),
+                    validEmail('Correo Electrónico'),
+                  ]"
                 />
               </div>
               <div class="form-group d-flex flex-wrap pb-lg-0">
                 <button
-                  type="button"
                   id="kt_login_forgot_submit"
+                  ref="kt_login_forgot_submit"
                   class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4"
+                  :disabled="!validFormReset"
+                  type="submit"
                 >
-                  Enviar
+                  Restablecer contrase&ntilde;a
                 </button>
                 <button
                   type="button"
                   id="kt_login_forgot_cancel"
                   class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3"
                   @click="showForm('signin')"
+                  :disabled="cancelResetDisabled"
                 >
                   Cancelar
                 </button>
               </div>
-            </form>
+            </v-form>
           </div>
           <!--end::Forgot-->
         </div>
         <!--begin::Content footer-->
-        <div
-          class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0"
+        <!--div
+          class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0 s-none"
         >
           <a href="#" class="text-primary font-weight-bolder font-size-h5"
             >Términos de uso</a
           >
-          <!--<a href="#" class="text-primary ml-10 font-weight-bolder font-size-h5"
-            >Planes</a>-->
           <a href="#" class="text-primary ml-10 font-weight-bolder font-size-h5"
             >Contacto</a
           >
-        </div>
+        </div-->
         <!--end::Content footer-->
       </div>
       <!--end::Content-->
     </div>
+<!--Inicio:: Snack alert-->
+<SnackAlert ref="snackalert"></SnackAlert>
+<!-- Fin:: Snack alert-->
   </div>
 </template>
 
@@ -280,18 +302,11 @@
 </style>
 
 <script>
-import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
-
-// FormValidation plugins
-import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
-import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
-import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
-
 import KTUtil from "@/assets/js/components/util";
 import { mapGetters, mapState } from "vuex";
-import { LOGIN, LOGOUT, REGISTER } from "@/core/services/store/auth.module";
-import Swal from "sweetalert2";
-
+import { LOGIN, LOGOUT } from "@/core/services/store/auth.module";
+import validations from "@/core/untils/validations.js";
+import SnackAlert from "@/view/content/alerts/SnackAlert.vue";
 export default {
   name: "login-1",
   data() {
@@ -299,205 +314,39 @@ export default {
       state: "signin",
       // Remove this dummy login info
       form: {
-        email: "", //admin@demo.com
-        password: "" //demo
-      }
+        codigo: "", //admin@demo.com
+        pass: "", //demo
+      },
+      validForm: false,
+      validFormReset: false,
+      cancelResetDisabled: false,
+      datosResetPass: {
+        correoElectronico: "",
+      },
+      datosPass: {
+        user_Id: 0,
+        correo: "",
+      },
+      ...validations,
     };
+  },
+  components: {
+    SnackAlert,
   },
   computed: {
     ...mapState({
-      errors: state => state.auth.errors
+      errors: (state) => state.auth.errors,
     }),
     ...mapGetters(["currentUser"]),
 
     backgroundImage() {
       return (
-        process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
+        //process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
+        process.env.BASE_URL + "media/img/free-vector.jpg"
       );
-    }
+    },
   },
-  mounted() {
-    const signin_form = KTUtil.getById("kt_login_signin_form");
-    const signup_form = KTUtil.getById("kt_login_signup_form");
-    const forgot_form = KTUtil.getById("kt_login_forgot_form");
-
-    this.fv = formValidation(signin_form, {
-      fields: {
-        email: {
-          validators: {
-            notEmpty: {
-              message: "Username is required"
-            }
-          }
-        },
-        password: {
-          validators: {
-            notEmpty: {
-              message: "Password is required"
-            }
-          }
-        }
-      },
-      plugins: {
-        trigger: new Trigger(),
-        submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
-    });
-
-    this.fv1 = formValidation(signup_form, {
-      fields: {
-        fullname: {
-          validators: {
-            notEmpty: {
-              message: "Full name is required"
-            }
-          }
-        },
-        email: {
-          validators: {
-            notEmpty: {
-              message: "Email is required"
-            },
-            emailAddress: {
-              message: "The value is not a valid email address"
-            }
-          }
-        },
-        password: {
-          validators: {
-            notEmpty: {
-              message: "Password is required"
-            }
-          }
-        },
-        cpassword: {
-          validators: {
-            notEmpty: {
-              message: "Confirm password is required"
-            },
-            identical: {
-              compare: function() {
-                return signup_form.querySelector('[name="password"]').value;
-              },
-              message: "The password and its confirm are not the same"
-            }
-          }
-        },
-        agree: {
-          validators: {
-            notEmpty: {
-              message: "You should agree terms and conditions"
-            }
-          }
-        }
-      },
-      plugins: {
-        trigger: new Trigger(),
-        submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
-    });
-
-    this.fv2 = formValidation(forgot_form, {
-      fields: {
-        email: {
-          validators: {
-            notEmpty: {
-              message: "Email is required"
-            },
-            emailAddress: {
-              message: "The value is not a valid email address"
-            }
-          }
-        }
-      },
-      plugins: {
-        trigger: new Trigger(),
-        submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
-    });
-
-    this.fv.on("core.form.valid", () => {
-      var email = this.form.email;
-      var password = this.form.password;
-
-      // clear existing errors
-      this.$store.dispatch(LOGOUT);
-
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_login_signin_submit"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-
-      // dummy delay
-      setTimeout(() => {
-        // send login request
-        this.$store
-          .dispatch(LOGIN, { email, password })
-          // go to which page after successfully login
-          .then(() => {
-            this.$router.push({ name: "dashboard" });
-          })
-          .catch(() => {});
-
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      }, 2000);
-    });
-
-    this.fv.on("core.form.invalid", () => {
-      Swal.fire({
-        title: "",
-        text: "Please, provide correct data!",
-        icon: "error",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    });
-
-    this.fv1.on("core.form.valid", () => {
-      const email = this.$refs.remail.value;
-      const password = this.$refs.rpassword.value;
-
-      // clear existing errors
-      this.$store.dispatch(LOGOUT);
-
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_login_signup_submit"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-
-      // dummy delay
-      setTimeout(() => {
-        // send register request
-        this.$store
-          .dispatch(REGISTER, {
-            email: email,
-            password: password
-          })
-          .then(() => this.$router.push({ name: "dashboard" }));
-
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      }, 2000);
-    });
-
-    this.fv1.on("core.form.invalid", () => {
-      Swal.fire({
-        title: "",
-        text: "Please, provide correct data!",
-        icon: "error",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    });
-  },
+  mounted() {},
   methods: {
     showForm(form) {
       this.state = form;
@@ -506,7 +355,57 @@ export default {
         KTUtil.getById(form_name),
         "animate__animated animate__backInUp"
       );
-    }
-  }
+    },
+
+    async login() {
+      this.$store.dispatch(LOGOUT);
+
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_login_signin_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+      //delete this.form.usuarioCreacion;
+
+      await this.$store
+        .dispatch(LOGIN, this.form)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200 && res.data.token) {
+            this.$router.push({ name: "dashboard" });
+          } else {
+            if (res.message) {
+              this.$refs.snackalert.SnackbarShow(
+                "warning",
+                "Error",
+                res.message
+              );
+            } else {
+              this.$refs.snackalert.SnackbarShow(
+                "warning",
+                "Error",
+                res.message
+              );
+            }
+          }
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        })
+        .catch(() => {
+          this.$refs.snackalert.SnackbarShow(
+            "warning",
+            "Mensaje",
+            "Ha ocurrido un error, por favor, ponte en contacto con el administrador del sistema."
+          );
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+          this.form.pass = "";
+        });
+    },
+  },
 };
 </script>

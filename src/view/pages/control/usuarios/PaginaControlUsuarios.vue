@@ -2,8 +2,8 @@
   <div>
     <v-row>
       <v-col
-        lg="3"
-        md="4"
+        lg="4"
+        md="6"
         sm="6"
         xs="12"
         class="mt-4"
@@ -71,6 +71,7 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.items = this.$store.state.usuarios.usuarios;
+            console.log(this.items);
           }
           this.tableLoading = false;
           //console.log(this.items);
@@ -88,7 +89,7 @@ export default {
 
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Inicio", route: "dashboard" },
+      { title: "Inicio", route: "/dashboard" },
       { title: "Control" },
       { title: "Usuarios" },
     ]);

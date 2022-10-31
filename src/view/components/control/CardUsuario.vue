@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <v-card :loading="loading" elevation="3" max-width="300">
+    <v-card :loading="loading" elevation="3" max-width="400">
       <template slot="progress">
         <v-progress-linear
           color="teal"
@@ -78,15 +78,34 @@
                 </a>
               </router-link>
               <router-link
-                to="/administracion/usuarios"
+                :to="{
+                  name: 'agregar',
+                  params: { id: usuario.id },
+                }"
                 v-slot="{ href, navigate, isActive, isExactActive }"
               >
                 <a :href="href" class="menu-link" @click="navigate">
                   <v-list-item key="3">
                     <v-list-item-icon>
-                      <v-icon></v-icon>
+                      <v-icon>fas fa-dumbbell</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content> otro</v-list-item-content>
+                    <v-list-item-content> Agregar Rutinas</v-list-item-content>
+                  </v-list-item>
+                </a>
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'agregar-dieta',
+                  params: { id: usuario.id },
+                }"
+                v-slot="{ href, navigate, isActive, isExactActive }"
+              >
+                <a :href="href" class="menu-link" @click="navigate">
+                  <v-list-item key="4">
+                    <v-list-item-icon>
+                      <v-icon>fas fa-apple-alt</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content> Agregar Dietas</v-list-item-content>
                   </v-list-item>
                 </a>
               </router-link>
@@ -96,7 +115,7 @@
         <v-row class="mx-0">
           <v-rating
             class="float-left"
-            :value="4"
+            :value="(usuario.sumatoria_rating / usuario.cantidad_rating)"
             color="amber"
             background-color="amber"
             readonly
@@ -111,10 +130,10 @@
           <span><strong>Codigo:</strong> {{ usuario.codigo }}</span>
         </div>
         <div class="mt-0 text-subtitle-1">
-          <span><strong>Peso:</strong> 78kg</span>
+          <span><strong>Peso:</strong> {{usuario.peso}}lbs</span>
         </div>
         <div class="mt-0 text-subtitle-1">
-          <span><strong>imc:</strong> Descripcion</span>
+          <span><strong>Calorías a Consumir:</strong> {{usuario.calorias}}kcal</span>
         </div>
       </v-card-text>
 
@@ -153,6 +172,7 @@ export default {
     return {
       loading: false,
       selection: 1,
+      rating:0
     };
   },
   methods: {},

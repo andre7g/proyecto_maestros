@@ -6,7 +6,6 @@
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label font-weight-bolder text-dark">
-                    Últimos expedientes ingresados
                 </span>
                 <!--<span class="text-muted mt-3 font-weight-bold font-size-sm">
                 More than 400+ new members
@@ -19,13 +18,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     
-                    <h6>Expediente 01</h6>
+                    <h6>Usuario</h6>
                     <div class="hori-timeline" dir="ltr">
                         <ul class="list-inline events">
                             <li class="list-inline-item event-list">
                                 <div class="px-4">
                                     <div class="event-date bg-soft-primary text-white">01/08/2022</div>
-                                    <h6 class="font-size-14">Estado 1</h6>
+                                    <h6 class="font-size-14">Peso 150kg</h6>
                                     <p class="text-muted d-none">It will be as simple as occidental in fact it will be Occidental Cambridge friend</p>
                                     <div class="d-none">
                                         <a href="#" class="btn btn-primary btn-sm">Read more</a>
@@ -34,8 +33,8 @@
                             </li>
                             <li class="list-inline-item event-list">
                                 <div class="px-4">
-                                    <div class="event-date bg-soft-success text-white">02/08/2022</div>
-                                    <h6 class="font-size-14">Estado 1</h6>
+                                    <div class="event-date bg-soft-success text-white">01/09/2022</div>
+                                    <h6 class="font-size-14">Peso 145kg</h6>
                                     <p class="text-muted d-none">Everyone realizes why a new common language one could refuse translators.</p>
                                     <div class="d-none">
                                         <a href="#" class="btn btn-primary btn-sm">Read more</a>
@@ -44,8 +43,8 @@
                             </li>
                             <li class="list-inline-item event-list">
                                 <div class="px-4">
-                                    <div class="event-date bg-soft-danger text-white">05/08/2022</div>
-                                    <h6 class="font-size-14">Estado 1</h6>
+                                    <div class="event-date bg-soft-danger text-white">01/10/2022</div>
+                                    <h6 class="font-size-14">Peso 140kg</h6>
                                     <p class="text-muted d-none">If several languages coalesce the grammar of the resulting simple and regular</p>
                                     <div class="d-none">
                                         <a href="#" class="btn btn-primary btn-sm">Read more</a>
@@ -54,8 +53,8 @@
                             </li>
                             <li class="list-inline-item event-list">
                                 <div class="px-4">
-                                    <div class="event-date bg-soft-warning text-white">16/08/2022</div>
-                                    <h6 class="font-size-14">Estado 1</h6>
+                                    <div class="event-date bg-soft-warning text-white">01/11/2022</div>
+                                    <h6 class="font-size-14">Peso 130kg</h6>
                                     <p class="text-muted d-none">Languages only differ in their pronunciation and their most common words.</p>
                                     <div class="d-none">
                                         <a href="#" class="btn btn-primary btn-sm">Read more</a>

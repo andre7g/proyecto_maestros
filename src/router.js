@@ -13,7 +13,8 @@ export default new Router({
         {
           path: "/dashboard",
           name: "dashboard",
-          component: () => import("@/view/pages/Dashboard.vue")
+          component: () => import("@/view/pages/Dashboard.vue"),
+          meta:{ authorize: [ 1 ] }
         },
         {
           path: "/builder",
@@ -34,7 +35,17 @@ export default new Router({
               component: () =>
                 import(
                   "@/view/pages/administracion/catalogos/usuarios/PaginaAdminUsuarios.vue"
-                )
+                ),
+                meta:{ authorize: [ 1 ] }
+            },
+            {
+              path: "ejercicios",
+              name: "ejercicios",
+              component: () =>
+                import(
+                  "@/view/pages/administracion/catalogos/ejercicios/PaginaAdminEjercicios.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
             },
 
            
@@ -53,7 +64,8 @@ export default new Router({
               component: () =>
                 import(
                   "@/view/pages/control/usuarios/PaginaControlUsuarios.vue"
-                )
+                ),
+                meta:{ authorize: [ 1 ] }
             },              
             //Pagina control usuario
             {
@@ -63,6 +75,7 @@ export default new Router({
                 import(
                   "@/view/pages/control/usuarios/PaginaNuevoControlUsuario.vue"
                 ),
+                meta:{ authorize: [ 1 ] },
                 children: [
 
                 ]
@@ -75,10 +88,77 @@ export default new Router({
                 import(
                   "@/view/pages/control/usuarios/PaginaControlHistorial.vue"
                 ),
+                meta:{ authorize: [ 1 ] },
                 children: [
 
                 ]
             },        
+          ]
+        },
+        // Sección ejercicios
+        {
+          path: "ejercicios",
+          name: "ejercicios",
+          component: () =>
+            import("@/view/pages/control/ControlBase.vue"),
+          children: [
+            {
+              path: "rutinas",
+              name: "rutinas",
+              component: () =>
+                import(
+                  "@/view/pages/ejercicios/PaginaAdminRutinas.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },                     
+            //Pagina agregar rutinas
+            {
+              path: "agregar/:id",
+              name: "agregar",
+              component: () =>
+                import(
+                  "@/view/pages/ejercicios/PaginaAgregarRutinas.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },                     
+          ]
+        },
+        // Sección dietas
+        {
+          path: "dietas",
+          name: "dietas",
+          component: () =>
+            import("@/view/pages/control/ControlBase.vue"),
+          children: [
+            {
+              path: "nueva-dieta",
+              name: "nueva-dieta",
+              component: () =>
+                import(
+                  "@/view/pages/dietas/PaginaAdminDietas.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },                     
+            //Pagina agregar dietas
+            {
+              path: "agregar/:id",
+              name: "agregar",
+              component: () =>
+                import(
+                  "@/view/pages/ejercicios/PaginaAgregarRutinas.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },     
+            //Pagina agregar rutinas
+            {
+              path: "agregar-dieta/:id",
+              name: "agregar-dieta",
+              component: () =>
+                import(
+                  "@/view/pages/dietas/PaginaAgregarDietaUsuario.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },                 
           ]
         },
        

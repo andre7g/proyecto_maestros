@@ -10,7 +10,7 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = "http://localhost:5196";
-    //Vue.axios.defaults.baseURL = "http://205.209.122.7:8082";
+    //Vue.axios.defaults.baseURL = "http://205.209.122.7:8095";
   },
 
   /**

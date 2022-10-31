@@ -2,20 +2,20 @@
   <!--begin::Mixed Widget 1-->
   <div class="card card-custom bg-gray-100 card-stretch gutter-b">
     <!--begin::Header-->
-    <div class="card-header border-0 bg-danger py-5">
+    <div class="card-header border-0 bg-success py-5">
       <h3 class="card-title font-weight-bolder text-white">
-        Sales Stat
+        Gimansio Marcello´s Gym
       </h3>
-      <div class="card-toolbar">
+      <!--div class="card-toolbar">
         <Dropdown1></Dropdown1>
-      </div>
+      </!--div-->
     </div>
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body p-0 position-relative overflow-hidden">
       <!--begin::Chart-->
       <apexchart
-        class="card-rounded-bottom bg-danger"
+        class="card-rounded-bottom bg-success"
         :options="chartOptions"
         :series="series"
         type="area"
@@ -27,18 +27,19 @@
         <div class="row m-0">
           <div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-              <inline-svg src="media/svg/icons/Media/Equalizer.svg" />
+              <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
             </span>
             <a href="#" class="text-warning font-weight-bold font-size-h6">
-              Weekly Sales
+              Usuarios: 50
             </a>
           </div>
           <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
-              <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
+              <inline-svg src="media/svg/icons/Home/Home-heart.svg" />
             </span>
             <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">
-              New Users
+            
+              Rutinas de Ejercicios: 15
             </a>
           </div>
         </div>
@@ -47,18 +48,18 @@
         <div class="row m-0">
           <div class="col bg-light-danger px-6 py-8 rounded-xl mr-7">
             <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-              <inline-svg src="media/svg/icons/Design/Layers.svg" />
+              <inline-svg src="media/svg/icons/Navigation/Close.svg" />
             </span>
             <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">
-              Item Orders
+              Pendientes de pago: 2
             </a>
           </div>
           <div class="col bg-light-success px-6 py-8 rounded-xl">
             <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-              <inline-svg src="media/svg/icons/Communication/Urgent-mail.svg" />
+              <inline-svg src="media/svg/icons/Food/Miso-Soup.svg" />
             </span>
             <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">
-              Bug Reports
+              Dietas: 10
             </a>
           </div>
         </div>
@@ -72,22 +73,22 @@
 </template>
 
 <script>
-import Dropdown1 from "@/view/content/dropdown/Dropdown1.vue";
+//import Dropdown1 from "@/view/content/dropdown/Dropdown1.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "widget-1",
   components: {
-    Dropdown1
+    //Dropdown1
   },
   data() {
     return {
-      strokeColor: "#D13647",
+      strokeColor: "#C6E2CF",
       chartOptions: {},
       series: [
         {
-          name: "Net Profit",
-          data: [30, 45, 32, 70, 40, 40, 40]
+          name: "",
+          data: [20, 25, 40, 30, 35, 40, 50,48]
         }
       ]
     };
@@ -138,7 +139,7 @@ export default {
         colors: [this.strokeColor]
       },
       xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+        categories: ["Enero","Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto"],
         axisBorder: {
           show: false
         },
@@ -207,7 +208,7 @@ export default {
         },
         y: {
           formatter: function(val) {
-            return "$" + val + " thousands";
+            return val + " Clientes";
           }
         },
         marker: {

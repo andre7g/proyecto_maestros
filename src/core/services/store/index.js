@@ -10,6 +10,18 @@ import profile from "./profile.module";
 import genericoget from "./genericoget.module";
 import usuarios from "./usuarios/usuarios.module";
 import historialusuarios from "./control/historialusuarios.module";
+import ejercicios from "./ejercicios/ejercicios.module";
+import rutinas from "./ejercicios/rutinas.module";
+import series from "./ejercicios/series.module";
+import seriesejercicios from "./ejercicios/seriesejercicios.module";
+import usuariorutinas from "./ejercicios/usuariorutinas.module";
+import dietas from "./dietas/dietas.module";
+import alimentos from "./dietas/alimentos.module";
+import grupoalimentos from "./dietas/grupoalimentos.module";
+import ingestas from "./dietas/ingestas.module";
+import ingestaalimentos from "./dietas/ingestaalimentos.module";
+import dietasusuarios from "./dietas/dietasusuarios.module";
+import historialpagos from "./usuarios/historialpagos.module";
 
 
 
@@ -24,6 +36,18 @@ export default new Vuex.Store({
     profile,
     genericoget,
     usuarios,
-    historialusuarios
+    historialusuarios,
+    ejercicios,
+    rutinas,
+    series,
+    seriesejercicios,
+    usuariorutinas,
+    dietas,
+    alimentos,
+    grupoalimentos,
+    ingestas,
+    ingestaalimentos,
+    dietasusuarios,
+    historialpagos
   }
 });

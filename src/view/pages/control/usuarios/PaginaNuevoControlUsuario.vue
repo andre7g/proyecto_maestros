@@ -304,10 +304,9 @@
                 color="grey lighten-5"
                 elevation="0"
                 class="mb-2 float-right grey lighten-5"
-                @click="
-                  dialogRegistro = false;
-                  resetForm();
-                "
+                :to="{
+                  name: 'control-usuarios'
+                }"
                 :disabled="btnRegistroLoading"
               >
                 Cancelar
@@ -391,7 +390,7 @@ export default {
       ],
       datosItem: {
         id: 0,
-        fecha:'2022-10-01',
+        fecha: "2022-10-01",
         peso: 0,
         altura: 0,
         imc: 0,
@@ -412,7 +411,7 @@ export default {
         observaciones: "",
         usuariosId: 0,
         estadosId: 1,
-        rating:1
+        rating: 1,
       },
       ...validations,
       datosUsuario: {},
@@ -454,7 +453,7 @@ export default {
       this.$store
         .dispatch(REGISTAR_HISTORIAL_BY_USUARIO, this.datosItem)
         .then((res) => {
-            console.log(res);
+          console.log(res);
           if (res.status === 200) {
             this.$refs.snackalert.SnackbarShow(
               "success",
@@ -613,9 +612,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Inicio", route: "dashboard" },
+      { title: "Inicio", route: "/dashboard" },
+      { title: "Usuario", route: "/control/usuarios" },
       { title: "Control" },
-      { title: "Usuario" },
     ]);
   },
 

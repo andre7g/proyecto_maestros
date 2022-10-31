@@ -5,18 +5,18 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >Agents Stats</span
+          >Usuarios</span
         >
-        <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
-        >
+        <!--span class="text-muted mt-3 font-weight-bold font-size-sm"
+          >More than 400+ new members</!--span
+        -->
       </h3>
-      <div class="card-toolbar">
+      <!--div class="card-toolbar">
         <a class="btn btn-info font-weight-bolder font-size-sm mr-3"
           >New Arrivals</a
         >
         <a class="btn btn-danger font-weight-bolder font-size-sm">Create</a>
-      </div>
+      </!--div-->
     </div>
     <!--end::Header-->
     <!--begin::Body-->
@@ -30,11 +30,11 @@
             <thead>
               <tr class="text-left">
                 <th style="min-width: 250px" class="pl-7">
-                  <span class="text-dark-75">products</span>
+                  <span class="text-dark-75">Nombre</span>
                 </th>
-                <th style="min-width: 120px">earnings</th>
-                <th style="min-width: 100px">comission</th>
-                <th style="min-width: 100px">company</th>
+                <th style="min-width: 120px">Kilocalorias</th>
+                <th style="min-width: 100px">Peso</th>
+                <th style="min-width: 100px">Altura</th>
                 <th style="min-width: 100px">rating</th>
                 <th style="min-width: 101px"></th>
               </tr>
@@ -44,7 +44,7 @@
                 <tr v-bind:key="i">
                   <td class="pl-0 pt-8">
                     <div class="d-flex align-items-center">
-                      <div class="symbol symbol-50 symbol-light mr-4">
+                      <!--div class="symbol symbol-50 symbol-light mr-4">
                         <span class="symbol-label">
                           <img
                             :src="item.img"
@@ -52,7 +52,7 @@
                             alt=""
                           />
                         </span>
-                      </div>
+                      </!--div-->
                       <div>
                         <a
                           class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
@@ -101,12 +101,12 @@
                       item.rate
                     }}</span>
                   </td>
-                  <td class="pr-0 text-right">
+                  <!--td class="pr-0 text-right">
                     <a
                       class="btn btn-light-success font-weight-bolder font-size-sm"
                       >View Offer</a
                     >
-                  </td>
+                  </!--td-->
                 </tr>
               </template>
             </tbody>

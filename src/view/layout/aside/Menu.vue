@@ -57,7 +57,7 @@
             </li>
           </router-link>
           <router-link
-            to="/administracion/expedientes"
+            to="/administracion/ejercicios"
             v-slot="{ href, navigate, isActive, isExactActive }"
           >
             <li
@@ -73,7 +73,7 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">e</span>
+                <span class="menu-text">Ejercicios</span>
               </a>
             </li>
           </router-link>
@@ -222,6 +222,44 @@
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon fas fa-weight"></i>
           <span class="menu-text">Usuarios</span>
+        </a>
+      </li>
+    </router-link>
+    <router-link
+      to="/ejercicios/rutinas"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon fas fa-dumbbell"></i>
+          <span class="menu-text">Rutinas</span>
+        </a>
+      </li>
+    </router-link>
+    <router-link
+      to="/dietas/nueva-dieta"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon fas fa-apple-alt"></i>
+          <span class="menu-text">Dietas</span>
         </a>
       </li>
     </router-link>

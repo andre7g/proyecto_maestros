@@ -6,7 +6,7 @@
   >
     <!--begin::Logo-->
     <a href="/">
-      <img alt="Logo" :src="headerLogo" />
+      <h3> <span class="text-white"> Marcellos´s Gym </span></h3>
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->
@@ -14,27 +14,29 @@
       <!--begin::Aside Mobile Toggle-->
       <button
         v-if="asideEnabled"
-        class="btn p-0 burger-icon burger-icon-left"
+        class="btn p-0 burger-icon burger-icon-left text-white"
         id="kt_aside_mobile_toggle"
-        
+        color="white"
       >
         <span></span>
       </button>
       <!--end::Aside Mobile Toggle-->
       <!--begin::Header Menu Mobile Toggle-->
       <button
-        class="btn p-0 burger-icon ml-4 d-none"
+        class="btn p-0 burger-icon ml-4 d-none text-white"
         id="kt_header_mobile_toggle"
         ref="kt_header_mobile_toggle"
+        color="white"
       >
         <span></span>
       </button>
       <!--end::Header Menu Mobile Toggle-->
       <!--begin::Topbar Mobile Toggle-->
       <button
-        class="btn btn-hover-text-primary p-0 ml-2 d-none"
+        class="btn btn-hover-text-primary p-0 ml-2 d-none text-white"
         id="kt_header_mobile_topbar_toggle"
         ref="kt_header_mobile_topbar_toggle"
+        color="white"
       >
         <span class="svg-icon svg-icon-xl">
           <!--begin::Svg Icon | path:svg/icons/General/User.svg-->

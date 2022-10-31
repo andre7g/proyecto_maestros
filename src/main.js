@@ -4,7 +4,7 @@ import router from "./router";
 import store from "@/core/services/store";
 import ApiService from "@/core/services/api.service";
 //import MockService from "@/core/mock/mock.service";
-import { VERIFY_AUTH } from "@/core/services/store/auth.module";
+import { VERIFY_AUTH, LOGOUT } from "@/core/services/store/auth.module";
 import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
 
 Vue.config.productionTip = false;
@@ -32,20 +32,47 @@ import "@mdi/font/css/materialdesignicons.css";
 import "@/core/plugins/formvalidation";
 
 import VueMask from "v-mask";
-import VueCryptojs from "vue-cryptojs";
+import jwtService from "./core/services/jwt.service";
+//import VueCryptojs from "vue-cryptojs";
 
 // API service init
 ApiService.init();
-
+Vue.use(VueMask);
 //Vue.use(VueMask,VueCryptojs);
-[VueMask, VueCryptojs].forEach(x => Vue.use(x));
+//[VueMask, VueCryptojs].forEach(x => Vue.use(x));
 
 // Remove this to disable mock API
 //MockService.init();
 
 router.beforeEach((to, from, next) => {
+  const { authorize } = to.meta;
+  let authorized = String(to.meta.authorize);
+
+  let authorizeRoles = new Array();
+  authorizeRoles = authorized.split(",");
   // Ensure we checked auth before each page load.
-  Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
+  Promise.all([store.dispatch(VERIFY_AUTH)]).then(() => {
+    let roles = jwtService.getRoles();
+    if (authorize) {
+      if (roles) {
+        if (!authorizeRoles.some((i) => roles.includes(i))) {
+          return next({ path: "/unauthorized" });
+        }
+      } else {
+        store.dispatch(LOGOUT);
+        return next({ path: "/login" });
+      }
+    }
+    if (to.path === "/login") {
+      if(roles){
+        if (roles.includes(1)) {
+          return next({ name: "dashboard" });
+        }
+      }
+      next();
+    }
+    next();
+  });
 
   // reset config to initial state
   store.dispatch(RESET_LAYOUT_CONFIG);
@@ -61,5 +88,5 @@ new Vue({
   store,
   i18n,
   vuetify,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
