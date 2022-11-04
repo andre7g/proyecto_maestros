@@ -30,7 +30,7 @@
               <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
             </span>
             <a href="#" class="text-warning font-weight-bold font-size-h6">
-              Usuarios: 50
+              Usuarios: {{rating.cont_usuarios}}
             </a>
           </div>
           <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
@@ -39,7 +39,7 @@
             </span>
             <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">
             
-              Rutinas de Ejercicios: 15
+              Rutinas de Ejercicios: {{rating.cont_rutinas}} 
             </a>
           </div>
         </div>
@@ -51,7 +51,7 @@
               <inline-svg src="media/svg/icons/Navigation/Close.svg" />
             </span>
             <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">
-              Pendientes de pago: 2
+              Pendientes de pago: 0
             </a>
           </div>
           <div class="col bg-light-success px-6 py-8 rounded-xl">
@@ -59,7 +59,7 @@
               <inline-svg src="media/svg/icons/Food/Miso-Soup.svg" />
             </span>
             <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">
-              Dietas: 10
+              Dietas: {{rating.cont_dietas}} 
             </a>
           </div>
         </div>
@@ -74,8 +74,8 @@
 
 <script>
 //import Dropdown1 from "@/view/content/dropdown/Dropdown1.vue";
-import { mapGetters } from "vuex";
-
+import { mapGetters } from "vuex"; 
+import { OBTENER_CONTADORES_DASHBOARD } from "@/core/services/store/dashboard/dashboard.module";
 export default {
   name: "widget-1",
   components: {
@@ -90,13 +90,46 @@ export default {
           name: "",
           data: [20, 25, 40, 30, 35, 40, 50,48]
         }
-      ]
+      ],
+      rating:[]
     };
   },
   computed: {
     ...mapGetters(["layoutConfig"])
   },
+  methods: {
+  //!Obtener datos rating
+    obtenerDatosItem() {
+      this.$store
+        .dispatch(OBTENER_CONTADORES_DASHBOARD)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            this.rating = this.$store.state.dashboard.contadores;
+            console.log(this.rating);
+          } else {
+            console.log('algo fallo');
+            // this.$refs.snackalert.SnackbarShow(
+            //   "warning",
+            //   "Alerta",
+            //   `Ha ocurrido un error inesperado, por favor, póngase en contacto con el administrador del sistema.`
+            // );
+          }
+          //this.dialogLoaderVisible = false;
+        })
+        .catch(() => {
+          console.log('algo fallo');
+          // this.$refs.snackalert.SnackbarShow(
+          //   "warning",
+          //   "Alerta",
+          //   `Ha ocurrido un error inesperado, por favor, póngase en contacto con el administrador del sistema.`
+          // );
+          //this.dialogLoaderVisible = false;
+        });
+    },
+  },
   mounted() {
+    this.obtenerDatosItem();
     // reference; kt_mixed_widget_1_chart
     this.chartOptions = {
       chart: {

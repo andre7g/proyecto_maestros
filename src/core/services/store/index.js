@@ -22,6 +22,7 @@ import ingestas from "./dietas/ingestas.module";
 import ingestaalimentos from "./dietas/ingestaalimentos.module";
 import dietasusuarios from "./dietas/dietasusuarios.module";
 import historialpagos from "./usuarios/historialpagos.module";
+import dashboard from "./dashboard/dashboard.module";
 
 
 
@@ -48,6 +49,7 @@ export default new Vuex.Store({
     ingestas,
     ingestaalimentos,
     dietasusuarios,
-    historialpagos
+    historialpagos,
+    dashboard
   }
 });

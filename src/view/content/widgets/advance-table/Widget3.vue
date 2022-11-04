@@ -5,7 +5,7 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >Usuarios</span
+          >Clasificación</span
         >
         <!--span class="text-muted mt-3 font-weight-bold font-size-sm"
           >More than 400+ new members</!--span
@@ -24,93 +24,70 @@
       <div class="tab-content">
         <!--begin::Table-->
         <div class="table-responsive">
-          <table
-            class="table table-head-custom table-vertical-center table-head-bg table-borderless"
+          <v-data-table
+            class="elevation-0"
+            :headers="headers"
+            :items="rating"
+            :loading="tableLoading"
+            :footer-props="{
+              showFirstLastPage: true,
+              firstIcon: 'mdi-page-first',
+              lastIcon: 'mdi-page-last',
+              prevIcon: 'mdi-chevron-left',
+              nextIcon: 'mdi-chevron-right',
+              'items-per-page-text': 'Registros por página',
+              pageText: '{0}-{1} de {2}',
+            }"
+            disable-pagination
+            hide-default-footer
           >
-            <thead>
-              <tr class="text-left">
-                <th style="min-width: 250px" class="pl-7">
-                  <span class="text-dark-75">Nombre</span>
-                </th>
-                <th style="min-width: 120px">Kilocalorias</th>
-                <th style="min-width: 100px">Peso</th>
-                <th style="min-width: 100px">Altura</th>
-                <th style="min-width: 100px">rating</th>
-                <th style="min-width: 101px"></th>
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>
+                  <span
+                    :class="item.estadosId === 1 ? 'black--text' : 'grey--text'"
+                  >
+                    {{ item.codigo }}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    :class="item.estadosId === 1 ? 'black--text' : 'grey--text'"
+                  >
+                    {{ item.nombre }}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    :class="item.estadosId === 1 ? 'black--text' : 'grey--text'"
+                    >{{ item.peso }} lbs</span
+                  >
+                </td>
+                <td>
+                  <span
+                    :class="item.estadosId === 1 ? 'black--text' : 'grey--text'"
+                    >{{ item.altura }} cmts</span
+                  >
+                </td>
+                <td>
+                  <span
+                    :class="item.estadosId === 1 ? 'black--text' : 'grey--text'"
+                    >{{ item.imc }}</span
+                  >
+                </td>
+                <td>
+                  <v-rating
+                    class="float-left"
+                    :value="item.sumatoria_rating / item.cantidad_rating"
+                    color="amber"
+                    background-color="amber"
+                    readonly
+                    size="15"
+                  ></v-rating>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <template v-for="(item, i) in list">
-                <tr v-bind:key="i">
-                  <td class="pl-0 pt-8">
-                    <div class="d-flex align-items-center">
-                      <!--div class="symbol symbol-50 symbol-light mr-4">
-                        <span class="symbol-label">
-                          <img
-                            :src="item.img"
-                            class="h-75 align-self-end"
-                            alt=""
-                          />
-                        </span>
-                      </!--div-->
-                      <div>
-                        <a
-                          class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
-                          >{{ item.name }}</a
-                        >
-                        <span class="text-muted font-weight-bold d-block">{{
-                          item.desc
-                        }}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span
-                      class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                      >{{ item.paid }}</span
-                    >
-                    <span class="text-muted font-weight-bold">{{
-                      item.status
-                    }}</span>
-                  </td>
-                  <td>
-                    <span
-                      class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                      >{{ item.amount }}</span
-                    >
-                    <span class="text-muted font-weight-bold">{{
-                      item.status2
-                    }}</span>
-                  </td>
-                  <td>
-                    <span
-                      class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                      >{{ item.company }}</span
-                    >
-                    <span class="text-muted font-weight-bold">{{
-                      item.company_desc
-                    }}</span>
-                  </td>
-                  <td>
-                    <img
-                      src="media/logos/stars.png"
-                      alt="image"
-                      style="width: 5rem"
-                    />
-                    <span class="text-muted font-weight-bold d-block">{{
-                      item.rate
-                    }}</span>
-                  </td>
-                  <!--td class="pr-0 text-right">
-                    <a
-                      class="btn btn-light-success font-weight-bolder font-size-sm"
-                      >View Offer</a
-                    >
-                  </!--td-->
-                </tr>
-              </template>
-            </tbody>
-          </table>
+            </template>
+          </v-data-table>
         </div>
         <!--end::Table-->
       </div>
@@ -121,61 +98,84 @@
 </template>
 
 <script>
+import { OBTENER_RATING_DASHBOARD } from "@/core/services/store/dashboard/dashboard.module";
 export default {
   name: "widget-3",
   data() {
     return {
-      list: [
-        {
-          img: "media/svg/avatars/001-boy.svg",
-          name: "Brad Simmons",
-          desc: "HTML, JS, ReactJS",
-          paid: "$8,000,000",
-          status: "In Proccess",
-          status2: "Paid",
-          amount: "$520",
-          company: "Intertico",
-          company_desc: "Web, UI/UX Design",
-          rate: "Best Rated"
-        },
-        {
-          img: "media/svg/avatars/018-girl-9.svg",
-          name: "Jessie Clarcson",
-          desc: "C#, ASP.NET, MS SQL",
-          paid: "$23,000,000",
-          status: "Pending",
-          status2: "Rejected",
-          amount: "$1,600",
-          company: "Agoda",
-          company_desc: "Houses & Hotels",
-          rate: "Above Average"
-        },
-        {
-          img: "media/svg/avatars/014-girl-7.svg",
-          name: "Lebron Wayde",
-          desc: "PHP, Laravel, VueJS",
-          paid: "$2,600,000",
-          status: "Paid",
-          status2: "Paid",
-          amount: "$6,700",
-          company: "RoadGee",
-          company_desc: "Transportation",
-          rate: "Best Rated"
-        },
-        {
-          img: "media/svg/avatars/047-girl-25.svg",
-          name: "Natali Trump",
-          desc: "Python, PostgreSQL, ReactJS",
-          paid: "$2,600,000",
-          status: "Paid",
-          status2: "Pending",
-          amount: "$14,000",
-          company: "The Hill",
-          company_desc: "Insurance",
-          rate: "Average"
-        }
-      ]
+      tableLoading: false,
+      rating: [],
     };
-  }
+  },
+  mounted() {
+    this.obtenerDatosItem();
+  },
+  methods: {
+    //!Obtener datos rating
+    obtenerDatosItem() {
+      this.$store
+        .dispatch(OBTENER_RATING_DASHBOARD)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            this.rating = this.$store.state.dashboard.rating;
+            //console.log(this.rating);
+          } else {
+            console.log("algo fallo");
+            // this.$refs.snackalert.SnackbarShow(
+            //   "warning",
+            //   "Alerta",
+            //   `Ha ocurrido un error inesperado, por favor, póngase en contacto con el administrador del sistema.`
+            // );
+          }
+          //this.dialogLoaderVisible = false;
+        })
+        .catch(() => {
+          console.log("algo fallo");
+          // this.$refs.snackalert.SnackbarShow(
+          //   "warning",
+          //   "Alerta",
+          //   `Ha ocurrido un error inesperado, por favor, póngase en contacto con el administrador del sistema.`
+          // );
+          //this.dialogLoaderVisible = false;
+        });
+    },
+  },
+  computed: {
+    headers() {
+      return [
+        {
+          text: "Código",
+          align: "start",
+          value: "codigo",
+        },
+        {
+          text: "Nombre",
+          align: "start",
+          value: "nombre",
+        },
+        {
+          text: "Peso",
+          align: "start",
+          value: "peso",
+        },
+        {
+          text: "Altura",
+          align: "start",
+          value: "altura",
+        },
+        {
+          text: "IMC",
+          align: "start",
+          value: "imc",
+        },
+        {
+          text: "Calificación",
+          align: "start",
+          value: "rating",
+        },
+      ];
+    },
+  },
 };
 </script>
