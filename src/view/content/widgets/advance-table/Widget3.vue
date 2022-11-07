@@ -119,7 +119,7 @@ export default {
           //console.log(res);
           if (res.status === 200) {
             this.rating = this.$store.state.dashboard.rating;
-            //console.log(this.rating);
+            console.log(this.rating);
           } else {
             console.log("algo fallo");
             // this.$refs.snackalert.SnackbarShow(
