@@ -52,7 +52,7 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">Usuarios</span>
+                <span class="menu-text">Alumnos</span>
               </a>
             </li>
           </router-link>
@@ -73,7 +73,7 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">Ejercicios</span>
+                <span class="menu-text">Materias</span>
               </a>
             </li>
           </router-link>
@@ -83,6 +83,69 @@
     </li>
 
     <!-- END:: PROYECTOS-->
+    <!-- BEGIN:: EVALUACIONES-->
+    <li
+      aria-haspopup="true"
+      data-menu-toggle="hover"
+      class="menu-item menu-item-submenu"
+      v-bind:class="{ 'menu-item-open': hasActiveChildren('/evaluaciones') }"
+    >
+      <a href="#" class="menu-link menu-toggle">
+        <i class="menu-icon fas fa-users-cog"></i>
+        <span class="menu-text">Evaluaciones</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="menu-submenu">
+        <span class="menu-arrow"></span>
+        <ul class="menu-subnav">
+
+          <router-link
+            to="/evaluaciones/actividades"
+            v-slot="{ href, navigate, isActive, isExactActive }"
+          >
+            <li
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+              class="menu-item"
+              :class="[
+                isActive && 'menu-item-active',
+                isExactActive && 'menu-item-active'
+              ]"
+            >
+              <a :href="href" class="menu-link" @click="navigate">
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Actividades</span>
+              </a>
+            </li>
+          </router-link>         
+          <router-link
+            to="/evaluaciones/rapida"
+            v-slot="{ href, navigate, isActive, isExactActive }"
+          >
+            <li
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+              class="menu-item"
+              :class="[
+                isActive && 'menu-item-active',
+                isExactActive && 'menu-item-active'
+              ]"
+            >
+              <a :href="href" class="menu-link" @click="navigate">
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Evaluación Rápida</span>
+              </a>
+            </li>
+          </router-link>         
+        </ul>
+      </div>
+    </li>
+
+    <!-- END:: EVALUACIONES-->
 
 
     <!--INCIO:: SECCION EXTERNA -->
@@ -206,7 +269,7 @@
       </div>
     </li-->
 
-    <router-link
+    <!--router-link
       to="/control/usuarios"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -224,8 +287,8 @@
           <span class="menu-text">Usuarios</span>
         </a>
       </li>
-    </router-link>
-    <router-link
+    </!--router-link-->
+    <!--router-link
       to="/ejercicios/rutinas"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -243,8 +306,8 @@
           <span class="menu-text">Rutinas</span>
         </a>
       </li>
-    </router-link>
-    <router-link
+    </!--router-link-->
+    <!--router-link
       to="/dietas/nueva-dieta"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -262,7 +325,7 @@
           <span class="menu-text">Dietas</span>
         </a>
       </li>
-    </router-link>
+    </!--router-link-->
 
     <!--li class="menu-section">
       <h4 class="menu-text">Cooperacion Sur - Sur (Externo)</h4>

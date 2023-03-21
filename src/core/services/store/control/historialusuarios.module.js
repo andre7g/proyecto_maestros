@@ -16,7 +16,7 @@ const state = {
 };
 
 const getters = {
-  obtnenerHistorialUsuarios(state) {
+  obtnenerHistorialUsers(state) {
     return state.historialUsuarios;
   }
 };

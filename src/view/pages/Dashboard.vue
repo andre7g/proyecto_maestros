@@ -7,9 +7,9 @@
       </div>
     </!--div-->
     <div class="row">
-      <div class="col-xxl-4">
+      <!--div class="col-xxl-4">
         <MixedWidget1></MixedWidget1>
-      </div>
+      </!--div-->
       <!--div class="col-xxl-4">
         <ListWidget9></ListWidget9>
       </!--div-->
@@ -38,9 +38,9 @@
       <!--div class="col-xxl-4 order-1 order-xxl-2"> dona de porcentaje
         <StatsWidget13></StatsWidget13>
       </!--div-->
-      <div class="col-xxl-8 order-1 order-xxl-2">
+      <!--div class="col-xxl-8 order-1 order-xxl-2">
         <AdvancedTableWidget3></AdvancedTableWidget3>
-      </div>
+      </!--div-->
     </div>
     <!--end::Dashboard-->
   </div>
@@ -49,8 +49,8 @@
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 //import AdvancedTableWidget2 from "@/view/content/widgets/advance-table/Widget2.vue";
-import AdvancedTableWidget3 from "@/view/content/widgets/advance-table/Widget3.vue";
-import MixedWidget1 from "@/view/content/widgets/mixed/Widget1.vue";
+//import AdvancedTableWidget3 from "@/view/content/widgets/advance-table/Widget3.vue";
+//import MixedWidget1 from "@/view/content/widgets/mixed/Widget1.vue";
 //import ListWidget1 from "@/view/content/widgets/list/Widget1.vue";
 //import ListWidget3 from "@/view/content/widgets/list/Widget3.vue";
 //import ListWidget4 from "@/view/content/widgets/list/Widget4.vue";
@@ -66,8 +66,8 @@ export default {
   name: "dashboard",
   components: {
     //AdvancedTableWidget2,
-    AdvancedTableWidget3,
-    MixedWidget1,
+    //AdvancedTableWidget3,
+    //MixedWidget1,
     //ListWidget1,
     //ListWidget3,
     //ListWidget4,

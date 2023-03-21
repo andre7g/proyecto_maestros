@@ -14,7 +14,7 @@
           target="_blank"
           class="text-dark-75 text-hover-primary"
         >
-          Marcello´s Gym
+          Maestros
         </a>
       </div>
       <!-- <div class="nav nav-dark" >

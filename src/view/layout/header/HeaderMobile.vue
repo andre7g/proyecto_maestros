@@ -6,7 +6,7 @@
   >
     <!--begin::Logo-->
     <a href="/">
-      <h3> <span class="text-white"> Marcellos´s Gym </span></h3>
+      <h3> <span class="text-white"> Maestros </span></h3>
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->

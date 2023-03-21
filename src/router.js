@@ -161,6 +161,36 @@ export default new Router({
             },                 
           ]
         },
+        // Sección dietas
+        {
+          path: "evaluaciones",
+          name: "evaluaciones",
+          component: () =>
+            import("@/view/pages/evaluaciones/ControlBase.vue"),
+          children: [
+            //Pagina para agregar actividades
+            {
+              path: "actividades",
+              name: "actividades",
+              component: () =>
+                import(
+                  "@/view/pages/evaluaciones/actividades/PaginaAdminActividades.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },     
+            //Pagina para evaluación rápida
+            {
+              path: "rapida",
+              name: "rapida",
+              component: () =>
+                import(
+                  "@/view/pages/evaluaciones/evaluacion_rapida/PaginaAdminEvaluacionRapida.vue"
+                ),
+                meta:{ authorize: [ 1 ] }
+            },         
+
+          ]
+        },
        
 
         {
@@ -629,6 +659,15 @@ export default new Router({
       path: "/404",
       name: "404",
       component: () => import("@/view/pages/error/Error-1.vue")
-    }
+    },
+    //Pagina para evaluación rápida
+    {
+      path: "/db",
+      name: "db",
+      component: () =>
+        import(
+          "@/view/pages/evaluaciones/actividades/db/Actividades.json"
+        ),
+    }, 
   ]
 });

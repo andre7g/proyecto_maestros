@@ -4,7 +4,7 @@
     <!--begin::Header-->
     <div class="card-header border-0 bg-success py-5">
       <h3 class="card-title font-weight-bolder text-white">
-        Gimansio Marcello´s Gym
+        Maestros
       </h3>
       <!--div class="card-toolbar">
         <Dropdown1></Dropdown1>
@@ -83,7 +83,7 @@ export default {
   },
   data() {
     return {
-      strokeColor: "#C6E2CF",
+      strokeColor: "#003B5C",
       chartOptions: {},
       series: [
         {

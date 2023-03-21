@@ -127,7 +127,7 @@
                   "
                   small
                   depressed
-                  color="#C6E2CF"
+                  color="#003B5C"
                   @click="obtenerDatosItemControl(item.id, item.fecha,item.imc)"
                 >
                   <v-icon left>fa-weight</v-icon> Ver Control

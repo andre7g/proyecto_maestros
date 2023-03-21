@@ -9,8 +9,8 @@
       }"
       id="kt_login"
     >
-      <!--begin::Aside-->
-      <div
+      <!--begin::Aside>
+      <div--
         class="login-aside d-flex flex-column flex-row-auto"
         style="background-color: #00173C;"
       >
@@ -22,15 +22,15 @@
             MARCELLO´S GYM
           </p>
         </div>
-        <!--div
-          class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
-          :style="{ backgroundImage: `url(${backgroundImage})` }"
-        ></div-->
         <div
           class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
           :style="{ backgroundImage: `url(${backgroundImage})` }"
         ></div>
-      </div>
+        <div
+          class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
+          :style="{ backgroundImage: `url(${backgroundImage})` }"
+        ></div>
+      </div-->
       <!--begin::Aside-->
       <!--begin::Content-->
       <div
@@ -95,12 +95,12 @@
                   <label class="font-size-h6 font-weight-bolder text-dark pt-5"
                     >Contraseña</label
                   >
-                  <a
+                  <!--a
                     class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
                     id="kt_login_forgot"
                     @click="showForm('forgot')"
                     >¿Olvidaste tu contraseña?</a
-                  >
+                  -->
                 </div>
                 <div
                   id="example-input-group-2"
@@ -338,7 +338,6 @@ export default {
       errors: (state) => state.auth.errors,
     }),
     ...mapGetters(["currentUser"]),
-
     backgroundImage() {
       return (
         //process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
@@ -356,21 +355,18 @@ export default {
         "animate__animated animate__backInUp"
       );
     },
-
     async login() {
       this.$store.dispatch(LOGOUT);
-
       // set spinner to submit button
       const submitButton = this.$refs["kt_login_signin_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
       //delete this.form.usuarioCreacion;
-
       await this.$store
         .dispatch(LOGIN, this.form)
         .then((res) => {
           console.log(res);
           if (res.status === 200 && res.data.token) {
-            this.$router.push({ name: "dashboard" });
+            //this.$router.push({ name: "dashboard" });
           } else {
             if (res.message) {
               this.$refs.snackalert.SnackbarShow(
@@ -404,6 +400,7 @@ export default {
             "spinner-right"
           );
           this.form.pass = "";
+            this.$router.push({ name: "dashboard" });
         });
     },
   },

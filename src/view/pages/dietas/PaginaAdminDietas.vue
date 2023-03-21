@@ -8,7 +8,7 @@
           </v-col>
           <v-col cols="12" sm="12" md="6">
             <v-btn
-              color="#C6E2CF"
+              color="#003B5C"
               class="mb-2 float-right teal--text"
               @click="modalNuevo"
             >
@@ -121,7 +121,7 @@
                   "
                   small
                   depressed
-                  color="#C6E2CF"
+                  color="#003B5C"
                   @click="obtenerDatosItem(item.id)"
                 >
                   <v-icon left>mdi-pencil</v-icon> Actualizar
@@ -136,7 +136,7 @@
                   "
                   small
                   depressed
-                  color="#C6E2CF"
+                  color="#003B5C"
                   @click="modalIngestas(item.id)"
                 >
                   <v-icon left>fas fa-plus</v-icon> Agregar Alimentos
@@ -267,7 +267,7 @@
                 </v-btn>
                 <!--:disabled="!validDocForm" type="submit"-->
                 <v-btn
-                  color="#C6E2CF"
+                  color="#003B5C"
                   class="mb-2 float-right teal--text"
                   type="submit"
                   :elevation="0"
@@ -425,7 +425,7 @@
               </v-col>
               <v-col cols="12" md="4" sm="12" class="pt-4 pb-0">
                 <v-btn
-                  color="#C6E2CF"
+                  color="#003B5C"
                   class="mb-2 float-right teal--text"
                   :elevation="0"
                   :loading="btnAgregarAlimentoLoading"
@@ -498,7 +498,7 @@
                 </v-btn>
                 <!--:disabled="!validDocForm" type="submit"-->
                 <v-btn
-                  color="#C6E2CF"
+                  color="#003B5C"
                   class="mb-2 float-right teal--text"
                   type="submit"
                   :elevation="0"
@@ -521,9 +521,9 @@
                 v-for="(ingesta, i) in ingestas"
                 :key="i"
               >
-                <v-expansion-panel-header disable-icon-rotate color="#C6E2CF">
-                  <v-chip color="#C6E2CF" text-color="#009688">
-                    <v-avatar left color="#009688" large>
+                <v-expansion-panel-header disable-icon-rotate color="#003B5C">
+                  <v-chip color="#003B5C" text-color="#0A1C3D">
+                    <v-avatar left color="#0A1C3D" large>
                       <v-icon color="#FFF">fas fa-apple-alt</v-icon>
                     </v-avatar>
                     {{ ingesta.nombre }} - {{ ingesta.energia_KcaL }} kcal

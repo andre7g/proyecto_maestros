@@ -142,10 +142,10 @@ export default {
 
 <style scoped>
 .aside {
-  background-color: #C6E2CF !important;
+  background-color: #003B5C !important;
 }
 
 .aside-menu {
-  background-color: #C6E2CF;
+  background-color: #003B5C;
 }
 </style>

@@ -3,7 +3,7 @@
   <div class="brand flex-column-auto" id="kt_brand" ref="kt_brand">
     <div class="brand-logo">
       <router-link to="/">
-        <h3 class="text-white font-weight-bolder">Marcellos´s GYM</h3>
+        <h3 class="text-white font-weight-bolder">Maestros</h3>
         <!-- <img :src="siteLogo()" alt="Logo" /> -->
       </router-link>
     </div>
@@ -78,6 +78,6 @@ export default {
 
 <style scoped>
 .brand {
-  background-color: #009688;
+  background-color: #0A1C3D;
 }
 </style>

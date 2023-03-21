@@ -1,3 +1,4 @@
+
 /* eslint-disable */
 import ApiService from "@/core/services/api.service";
 import JwtService from "@/core/services/jwt.service";
@@ -39,25 +40,36 @@ const getters = {
 
 const actions = {
   async [LOGIN](context, credentials) {
+    //console.log(credentials);
     
-    return new Promise(resolve => {
-      ApiService.post(`apiconsume/create?endpoint=api/Usuarios/login`, credentials)
-        .then(({ data }) => {
+    // return new Promise(resolve => {
+    //   ApiService.post(`apiconsume/create?endpoint=api/Usuarios/login`, credentials)
+    //     .then(({ data }) => {
           //console.log(data.data);
-         
-          if(data.status==200){
-            context.commit(SET_AUTH, data.data);
-            context.commit(SET_TOKEN);
-            
+         var datos = {
+          status:200,
+          message:"Autenticado",
+          data:{
+            id:1,
+            roles:[{rol:"admin",rol_Id:1}],
+            token:"abcd",
+            usuario:"Camino"
           }
-          resolve(data);
-        })
-        .catch(({ response }) => {
-          //console.log(response)
-          context.commit(SET_ERROR, response.data.errors);
-          resolve(response);
-        });
-    });
+         }
+        //  console.log(datos);
+        //   if(datos.status==200){
+            context.commit(SET_AUTH, datos.data);
+            context.commit(SET_TOKEN);
+            //return
+          //  }
+           resolve(datos);
+    //     })
+    //     .catch(({ response }) => {
+    //       //console.log(response)
+    //       context.commit(SET_ERROR, response.data.errors);
+    //       resolve(response);
+    //     });
+    // });
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
@@ -76,21 +88,32 @@ const actions = {
   },
   [VERIFY_AUTH](context) {
     if (JwtService.getToken()) {
-      ApiService.setHeader();
-      return new Promise(resolve => {
-        ApiService.query(`apiconsume/edit/${JwtService.getUserId()}?endpoint=api/Usuarios/VerificarUsuario/`)
-          .then(({ data }) => {
+    //   ApiService.setHeader();
+    //   return new Promise(resolve => {
+    //     ApiService.query(`apiconsume/edit/${JwtService.getUserId()}?endpoint=api/Usuarios/VerificarUsuario/`)
+    //       .then(({ data }) => {
+            var datos = {
+              status:200,
+              message:"Verificado",
+              data:{
+                id:1,
+                roles:[{rol:"admin",rol_Id:1}],
+                token:"abcd",
+                usuario:"Camino"
+              }
+             }
+             //console.log(datos);
             //console.log(data)
-            context.commit(SET_AUTH, data.data);
-            resolve();
-          })
-          .catch(({ response }) => {
-            context.commit(SET_ERROR, response.data.errors);
-          });
-        });
-    } else {
+            context.commit(SET_AUTH, datos.data);
+            //resolve();
+    //       })
+    //       .catch(({ response }) => {
+    //         context.commit(SET_ERROR, response.data.errors);
+    //       });
+    //     });
+     } else {
       context.commit(PURGE_AUTH);
-    }
+     }
   },
   [UPDATE_PASSWORD](context, payload) {
     const password = payload;
@@ -127,6 +150,7 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
+    //console.log(user);
     let rolesArray = user.roles.map( a => a.rol_Id );
     
     state.isAuthenticated = true;

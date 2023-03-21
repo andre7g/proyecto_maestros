@@ -1,7 +1,7 @@
 //import axios from "axios";
 import ApiService from "@/core/services/api.service";
 // action types
-export const OBTENER_HITORIAL_USUARIOS = "obtenerHistorialUsuarios";
+export const OBTENER_HITORIAL_USUARIOS = "obtenerHistorialUsers";
 export const OBTENER_HITORIAL_USUARIO = "obtenerHistorialUsuario";
 export const REGISTAR_HITORIAL_USUARIO = "registrarHistorialUsuario";
 export const ACTUALIZAR_HITORIAL_USUARIO = "actualizarHistorialUsuario";

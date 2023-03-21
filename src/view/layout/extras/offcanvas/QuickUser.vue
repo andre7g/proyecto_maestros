@@ -7,7 +7,7 @@
       <span
         class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1"
       >
-        Bienvenido,
+        Bienvenid@ 
       </span>
       <span
         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
@@ -65,9 +65,9 @@
               to="/custom-pages/profile"
               class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
             >
-              Marcello´s Gym
+              Maestros
             </router-link>
-            <div class="text-muted mt-1">Marcello´s Gym</div>
+            <!--div class="text-muted mt-1">MMaestro</!--div-->
             <div class="navi mt-2">
               <a href="#" class="navi-item">
                 <span class="navi-link p-0 pb-2">
@@ -307,7 +307,7 @@ export default {
     onLogout() {
       this.$store
         .dispatch(LOGOUT)
-        .then(() => this.$router.push({ name: "login" }));
+        .then(() => this.$router.push({ path: "/login" }));
     },
     closeOffcanvas() {
       new KTOffcanvas(KTLayoutQuickUser.getElement()).hide();
